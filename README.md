@@ -25,7 +25,7 @@
   
 * Audit trail
 
-##Moscow
+## Moscow
 Must
 Borrow Tools
 Request Tools
@@ -53,7 +53,7 @@ membership cards
 Won't
 pay fee to join cult
 
-##FURPS
+## FURPS
 Functionality
 * Borrow tools
 * Tools Sets
