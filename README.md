@@ -19,6 +19,7 @@
 * Co-op with other companies?
 * Nofity customers
 * Reserve tools online
+* Must be 18+ to check out tools
 * Employee accounts
   * check in/out tools
   
