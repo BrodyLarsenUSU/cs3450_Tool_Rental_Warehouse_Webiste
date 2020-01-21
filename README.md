@@ -27,32 +27,32 @@
 
 ## Moscow
 Must
-Borrow Tools
-Request Tools
-Check Inventory
-Check out
-employee accounts
-Must be 18+ to check out tools
+* Borrow Tools
+* Request Tools
+* Check Inventory
+* Check out
+* employee accounts
+* Must be 18+ to check out tools
 
 Should
-legder
-monthly fee
-tool use tracking
-reserve tools online
-Prints list for check out
+* legder
+* monthly fee
+* tool use tracking
+* reserve tools online
+* Prints list for check out
 
 Could
-tools to be replaced
-Notify customers
-waiting on tools
-tool sets
-extend time
-audit trail
-membership cards
-Daily tool prep list
+* tools to be replaced
+* Notify customers
+* waiting on tools
+* tool sets
+* extend time
+* audit trail
+* membership cards
+* Daily tool prep list
 
 Won't
-co-op with other companies for tools
+* co-op with other companies for tools
 
 ## FURPS
 Functionality
