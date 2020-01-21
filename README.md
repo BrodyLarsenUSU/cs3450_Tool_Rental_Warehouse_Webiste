@@ -36,6 +36,7 @@ Must be 18+ to check out tools
 
 Should
 legder
+monthly fee
 tool use tracking
 reserve tools online
 Prints list for check out
@@ -46,12 +47,12 @@ Notify customers
 waiting on tools
 tool sets
 extend time
-co-op with other companies
 audit trail
 membership cards
+Daily tool prep list
 
 Won't
-pay fee to join cult
+co-op with other companies for tools
 
 ## FURPS
 Functionality
