@@ -1,0 +1,10 @@
+p{
+    color: black;
+    font-family: monospace, Droid Sans, Arial, cursive;
+    font-style: italic;
+    background-color: coral;
+}
+
+.redBar{
+background-color: red
+}
