@@ -1,6 +1,5 @@
 package com.softwareEngineering.Spring.Repositories;
 
-import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.softwareEngineering.Spring.Models.*;
 
