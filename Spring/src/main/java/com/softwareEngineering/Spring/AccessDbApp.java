@@ -1,32 +1,39 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Controller;
+package com.softwareEngineering.Spring;
 
-@Controller
-public class AccessingDataMongodbApplication{
+import com.softwareEngineering.Spring.Models.*;
+import com.softwareEngineering.Spring.Repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+
+
+@RestController
+public class AccessDbApp{
   @Autowired
   private CustomerRepository customerRepository;
+  @Autowired
   private ToolRepository toolRepo;
 
   @GetMapping("/accessDBCustomer")
-  public String getDB(Model model{
-		findCustomerByName();
-		return "accessDB"
+  public String getDB(){
+		// findCustomerByName();
+		return "accessDBCustomer";
   }
 
   @GetMapping("/accesDBTool")
-  public String getToolDB(Model model){
-	
+  public String getToolDB(){
+		return "accesDBTool";	
   }
 
   @PostMapping("/accessDBTool")
-  public void postDB(@ModelAttribute Tool tool){
+  public void postToolDB(Tool tool){
 		toolRepo.save(tool);
   }
 
   @PostMapping("/accessDBCustomer")
-  public void postDB(@ModelAttribute Customer customer){
+  public void postCustomerDB(Customer customer){
 		customerRepository.save(customer);	
   }
 }
