@@ -12,9 +12,9 @@ public class WelcomeController {
         return "index";
     }
 
-    @RequestMapping("/page2")
-    public String getPage2(){
-        return "page2";
+    @RequestMapping("/tools")
+    public String getToolsPag2(){
+        return "tools";
     }
 
 }
