@@ -1,0 +1,167 @@
+category,tool,value,quantity,on-hand,checked-out
+Bike Tools,Full Set Bike Tools,20,5,3,2
+Bike Tools,Mechanic Stand,50,8,5,3
+Bike Tools,Truing Stand,50,8,5,3
+Carpentry & Woodworking,Impact Driver: Electric,100,1,1,0
+Carpentry & Woodworking,Router,10,2,1,1
+Carpentry & Woodworking,Square: Tri,10,4,1,3
+Carpentry & Woodworking,Cat’s Paw,10,3,2,1
+Carpentry & Woodworking,Stud Finder,10,3,2,1
+Carpentry & Woodworking,Chisels: Wood,25,6,3,3
+Carpentry & Woodworking,Level:Torpedo,10,3,3,0
+Carpentry & Woodworking,Pry Bars,10,5,3,2
+Carpentry & Woodworking,"Clamps: Bar 36″, 40″",5,4,4,0
+Carpentry & Woodworking,Coping Saw,15,4,4,0
+Carpentry & Woodworking,Crow-Bar,5,7,4,3
+Carpentry & Woodworking,Pocket Screw Jig,10,6,4,2
+Carpentry & Woodworking,Block Plane,10,7,5,2
+Carpentry & Woodworking,Clamp: Right-Angle,10,5,5,0
+Carpentry & Woodworking,Hammer: Finish,5,6,5,1
+Carpentry & Woodworking,Hammer: Framing,5,7,6,1
+Carpentry & Woodworking,Impact Driver Set w/bits,100,8,6,2
+Carpentry & Woodworking,Router Table,50,10,7,3
+Carpentry & Woodworking,Square: Framing,10,7,7,0
+Carpentry & Woodworking,Vernier Caliper,10,8,7,1
+Carpentry & Woodworking,"Clamps: Quick 2″,4″,6″,8″",10,8,8,0
+Carpentry & Woodworking,Protractor/Angle Finder,10,11,8,3
+Carpentry & Woodworking,Tape: 100’ Reel,25,8,8,0
+Carpentry & Woodworking,Saw: Rip 24”,20,10,9,1
+Carpentry & Woodworking,Square: Speed,10,9,9,0
+Carpentry & Woodworking,Clamps: C,5,11,10,1
+Carpentry & Woodworking,Nailer: Flooring,10,12,10,2
+Carpentry & Woodworking,Plumb Bob,5,12,10,2
+Carpentry & Woodworking,Scribe/Compass,5,10,10,0
+Carpentry & Woodworking,Tape: Measure 25’,5,12,10,2
+Carpentry & Woodworking,Trim Gauge,5,13,10,3
+Carpentry & Woodworking,Utility Knife,5,12,10,2
+Carpet Tools,Carpet Cutter,5,4,1,3
+Carpet Tools,Power Stretcher,50,4,2,2
+Carpet Tools,Stair Tool,10,7,7,0
+Carpet Tools,Knee Kicker,20,11,9,2
+Carpet Tools,Seam Roller,50,10,9,1
+Cement Tools,Trowel: V,5,2,2,0
+Cement Tools,Mixing wands,5,6,3,3
+Cement Tools,Trowels: Finish,5,11,9,2
+Cement Tools,"Floats, Seamer",5,10,10,0
+Cement Tools,Trowel: Notched,5,13,10,3
+Drywall & Masonry,Caulking Guns,5,2,1,1
+Drywall & Masonry,Knife: Corner,5,3,1,2
+Drywall & Masonry,Knife: Mud 4”,5,2,1,1
+Drywall & Masonry,Scraper: Floor,5,4,1,3
+Drywall & Masonry,T-Square 48”,10,4,2,2
+Drywall & Masonry,Knife: Taping 8” Panel,5,6,3,3
+Drywall & Masonry,Sander:Hand,10,5,3,2
+Drywall & Masonry,Scraper 3″,5,3,3,0
+Drywall & Masonry,Scraper 4″,5,4,4,0
+Drywall & Masonry,Saw: Drywall,10,9,6,3
+Drywall & Masonry,Knife: Taping 12”,10,9,9,0
+Electrical & Mechanical,Snips: Tin,20,4,1,3
+Electrical & Mechanical,Hacksaws,20,3,2,1
+Electrical & Mechanical,Snips: 12″ Sheet,25,5,2,3
+Electrical & Mechanical,Telephone Crimping Tool,10,5,3,2
+Electrical & Mechanical,Pliers: Vice Grip,5,7,4,3
+Electrical & Mechanical,Tape: 100’ Fish,25,6,4,2
+Electrical & Mechanical,Wrench: Crescent,10,4,4,0
+Electrical & Mechanical,Pliers: Fencing/Box,10,5,5,0
+Electrical & Mechanical,Pliers: Linesman,20,5,5,0
+Electrical & Mechanical,Tester: Circuit,10,6,5,1
+Electrical & Mechanical,Tester: Receptacle,10,6,5,1
+Electrical & Mechanical,Wrench: Slip,5,7,5,2
+Electrical & Mechanical,Digital Multimeter,10,9,6,3
+Electrical & Mechanical,Tester: GFI,10,9,6,3
+Electrical & Mechanical,Nipper: 10”,10,9,9,0
+Electrical & Mechanical,Pliers: Slotted,5,12,9,3
+Electrical & Mechanical,Screwdrivers,10,10,9,1
+Electrical & Mechanical,Socket Sets,25,11,9,2
+Electrical & Mechanical,Wrench: Pipe,5,12,9,3
+Electrical & Mechanical,Conduit Bender,5,12,10,2
+Electrical & Mechanical,Hex Key Sets,5,13,10,3
+Garden Tools,Bar: Cutting/scraping,5,1,1,0
+Garden Tools,Hoe: Garden,10,3,1,2
+Garden Tools,Pick: Mattock,25,3,1,2
+Garden Tools,Turning Fork,5,1,1,0
+Garden Tools,Pruner: Lopping,20,4,2,2
+Garden Tools,Edger: Electric,50,6,3,3
+Garden Tools,Lawn Mower: Push,50,4,3,1
+Garden Tools,Post Setter,50,6,3,3
+Garden Tools,Bar: Digging 72″,25,5,4,1
+Garden Tools,Saw: Branch,20,6,4,2
+Garden Tools,Shovel: Flat Point,20,5,4,1
+Garden Tools,Tamper 10″ x 10″,20,5,4,1
+Garden Tools,Trowel: Garden,5,7,4,3
+Garden Tools,Drain Spade,20,5,5,0
+Garden Tools,Hoe: Hoop,20,5,5,0
+Garden Tools,Pruners: Hand,5,7,5,2
+Garden Tools,Rake: Leaf,10,8,5,3
+Garden Tools,Seed Spreader,25,8,5,3
+Garden Tools,Wheelbarrow,50,5,5,0
+Garden Tools,Pick: Digging,20,9,6,3
+Garden Tools,Shovel: Snow,10,6,6,0
+Garden Tools,Trimmer: Electric,25,9,6,3
+Garden Tools,Axe,20,7,7,0
+Garden Tools,Hatchet,20,9,7,2
+Garden Tools,Lawn Aerator,50,9,7,2
+Garden Tools,Shovel: Round Point,20,10,7,3
+Garden Tools,"Saw: Bow 18″,21″,24″",20,8,8,0
+Garden Tools,Trimmer: Hedge (Manual).,25,8,8,0
+Garden Tools,Trimmer: Pole,50,11,8,3
+Garden Tools,Shovel: Small Garden,10,11,9,2
+Garden Tools,Weed Puller,10,9,9,0
+Garden Tools,Rake: Grading,15,12,10,2
+Garden Tools,Tamper: 8” x 8”,5,12,10,2
+Kitchen Tools,Air Popper Popcorn Maker,100,2,1,1
+Kitchen Tools,Electric Coffee Urn,25,5,2,3
+Kitchen Tools,Manual Meat Grinder,20,10,10,0
+Kitchen Tools,Power Hand Mixer,50,13,10,3
+Other Tools,Hammer: 3lb,5,3,1,2
+Other Tools,Wallpaper Steamer,20,1,1,0
+Other Tools,Extension Cords,5,3,2,1
+Other Tools,Ladder: 21′ Multi,50,3,2,1
+Other Tools,Hammer: 5lb Sledge,20,3,2,1
+Other Tools,Work Lights,50,3,2,1
+Other Tools,Hand Truck,25,5,3,2
+Other Tools,Masonry Hammer Bits,10,4,3,1
+Other Tools,Spade Bit Set,20,3,3,0
+Other Tools,Tile Saw: 7” Wet,10,3,3,0
+Other Tools,Hand Metal Detector,50,5,4,1
+Other Tools,Heat Gun,20,7,5,2
+Other Tools,Hole Saw Kit,20,8,5,3
+Other Tools,Ladder: 17’ Multi,40,8,5,3
+Other Tools,Hammer 10lb Sledge,25,6,6,0
+Other Tools,Roofing Spade,20,11,8,3
+Other Tools,Tile Cutter 14”,20,9,9,0
+Other Tools,Ladder: 6’ Fiberglass,30,11,10,1
+Power Tools,Nailer: Finish (16 ga.),100,1,1,0
+Power Tools,Sander: 18” Belt,250,3,1,2
+Power Tools,Sander: Detail,150,4,1,3
+Power Tools,Saw: Reciprocating,150,2,1,1
+Power Tools,Vac: Wet/Dry,100,1,1,0
+Power Tools,Dremel Rotary Tool,200,5,4,1
+Power Tools,Rotozip Cutting Tool,200,5,4,1
+Power Tools,Saw: 12″ Miter,100,6,4,2
+Power Tools,Saw: Circular,300,5,4,1
+Power Tools,Compressor: Air,300,5,5,0
+Power Tools,Nailer: Brad (18 ga.),150,7,5,2
+Power Tools,Nailer: Roofing Coil,150,6,5,1
+Power Tools,Saw: Jigsaw,200,7,5,2
+Power Tools,Angle Grinder,100,7,6,1
+Power Tools,Drill: ½” VSR,150,6,6,0
+Power Tools,Nailer: Framing,150,9,6,3
+Power Tools,Saw: Band,250,9,6,3
+Power Tools,Stand: Miter Saw,250,6,6,0
+Power Tools,Cement Siding Shears,300,9,7,2
+Power Tools,Demolition Hammer,500,7,7,0
+Power Tools,Drill: Right Angle,150,7,7,0
+Power Tools,Saw: 8 1/4″ Miter,150,7,7,0
+Power Tools,Saw: 14” Metal Cutoff,150,8,7,1
+Power Tools,Drill: 3/8” VSR,100,10,8,2
+Power Tools,Sander: Sheet,100,9,8,1
+Power Tools,Saw: 10” Miter,100,11,8,3
+Power Tools,Saw: 10” Table (Portable),150,9,8,1
+Power Tools,Saw: Tile,225,8,8,0
+Power Tools,Saw: Scroll,300,8,8,0
+Power Tools,Stapler: Narrow Crown,125,9,8,1
+Power Tools,Drill: ½” Hammer,100,11,9,2
+Power Tools,Power Planer,300,9,9,0
+Power Tools,Sander: 21” Belt,125,12,9,3
+Power Tools,Sander: Orbital,125,11,9,2
