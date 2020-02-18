@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -28,12 +29,13 @@ public class AccessDbApp{
   }
 
   @PostMapping("/accessDBTool")
-  public void postToolDB(Tool tool){
+  public void postToolDB(@RequestBody Tool tool){
 		toolRepo.save(tool);
   }
 
   @PostMapping("/accessDBCustomer")
-  public void postCustomerDB(Customer customer){
-		customerRepository.save(customer);	
+  public void postCustomerDB(@RequestBody Customer customer){
+      customerRepository.save(customer);
+    	
   }
 }
