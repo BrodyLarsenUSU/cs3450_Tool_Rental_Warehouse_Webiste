@@ -1,10 +1,17 @@
 package com.softwareEngineering.Spring;
 
+import com.softwareEngineering.Spring.Repositories.ToolRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class WelcomeController {
+
+    @Autowired
+    private ToolRepository toolRepo;
 
     @RequestMapping("/index")
     public String getIndex(){
@@ -12,7 +19,8 @@ public class WelcomeController {
     }
 
     @RequestMapping("/tools")
-    public String getToolsPag2(){
+    public String getTools(Model model){
+        model.addAttribute("tools", toolRepo.findAll());
         return "tools";
     }
 
