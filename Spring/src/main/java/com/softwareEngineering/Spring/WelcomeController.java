@@ -16,4 +16,19 @@ public class WelcomeController {
         return "tools";
     }
 
+    @RequestMapping("/checkout")
+    public String getCheckout(){
+        return "checkout";
+    }
+
+    @RequestMapping("/signin")
+    public String getSignIn(){
+        return "signIn";
+    }
+
+    @RequestMapping("/signup")
+    public String getSignUP(){
+        return "signUp";
+    }
+
 }
