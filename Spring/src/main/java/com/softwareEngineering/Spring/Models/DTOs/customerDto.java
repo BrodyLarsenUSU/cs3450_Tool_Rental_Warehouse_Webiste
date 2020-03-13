@@ -14,9 +14,7 @@ public class customerDto{
 
 	private String password;
 
-	public customerDto(){
-
-	}
+	public customerDto(){}
 
 	public String getUsername() {
 		return this.username;
