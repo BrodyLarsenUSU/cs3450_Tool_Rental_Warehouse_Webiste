@@ -1,26 +1,29 @@
 package com.softwareEngineering.Spring.Models.DTOs;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 public class customerDto{
+
+	private String username;
 
 	private String firstName;
 
-
 	private String lastName;
-
 
 	private String gender;
 
-
 	private int age;
-
 
 	private String password;
 
 	public customerDto(){
 
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

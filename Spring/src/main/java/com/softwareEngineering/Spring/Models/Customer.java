@@ -13,7 +13,7 @@ public class Customer{
 		private boolean employee;
 		private String gender;
 		private String password;
-
+		private String username;
 
 		public Customer(){
 			//firstName = "";
@@ -24,7 +24,7 @@ public class Customer{
 			//gender = "";
 		}
 
-		public Customer(String fn, String ln, int ag, boolean ac, boolean e, String g, String p){
+		public Customer(String fn, String ln, int ag, boolean ac, boolean e, String g, String p, String u){
 			firstName = fn;
 			lastName = ln;
 			age = ag;
@@ -32,6 +32,16 @@ public class Customer{
 			employee = e;
 			gender = g;
 			password = p;
+			username = u;
+		}
+
+
+		public String getUsername() {
+			return this.username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
 		}
 
 		public String getPassword(){
