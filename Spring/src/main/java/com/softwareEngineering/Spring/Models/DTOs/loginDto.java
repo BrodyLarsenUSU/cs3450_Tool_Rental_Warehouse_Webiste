@@ -5,7 +5,7 @@ public class loginDto{
     private String username;
     private String password;
 
-    loginDto(){}
+    public loginDto(){}
 
     public String getUsername() {
         return this.username;
