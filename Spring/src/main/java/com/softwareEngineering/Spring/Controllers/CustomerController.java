@@ -26,13 +26,11 @@ public class CustomerController{
 
 	@GetMapping("/customer")
 	public String getDB(Model model){
-		// findCustomerByName();
-		//model.addAttribute("customer", new Customer());
 		return "index";
 	}
 
 	@PostMapping("/customer")
-	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto){
+	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto, Model model){
 		Customer registered = new Customer();
 		registered.setFirstName(customerDto.getFirstName());
 		registered.setLastName(customerDto.getLastName());
@@ -40,6 +38,11 @@ public class CustomerController{
 		registered.setGender(customerDto.getGender());
 		registered.setPassword(customerDto.getPassword());
 		customerRepository.save(registered);
-		return "redirect:/index";
+		return "redirect:/index-add-success";
+	}
+
+	@PostMapping("/customer/signin")
+	public String loginCustomer(){
+		return "redirect:/index-login-success";
 	}
 }
