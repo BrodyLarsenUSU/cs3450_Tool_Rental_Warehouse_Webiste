@@ -26,6 +26,21 @@ public class WelcomeController {
 
     @RequestMapping("/index")
     public String getIndex(){
+        // model.addAttribute("addedSuccess", false);
+        return "index";
+    }
+
+    @RequestMapping("/index-add-success")
+    public String getIndexAddSuccess(Model model){
+        model.addAttribute("addedSuccess", true);
+        model.addAttribute("alert_message", "Successfully Created Account");
+        return "index";
+    }
+
+    @RequestMapping("/index-login-success")
+    public String getIndexLoginSuccess(Model model){
+        model.addAttribute("addedSuccess", true);
+        model.addAttribute("alert_message", "Successfully Logged In");
         return "index";
     }
 
