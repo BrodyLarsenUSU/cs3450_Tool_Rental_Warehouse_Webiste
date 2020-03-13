@@ -45,6 +45,11 @@ public class WelcomeController {
         return "signIn";
     }
 
+    @RequestMapping("/projects")
+    public String getProjects(){
+        return "projects";
+    }
+
     @RequestMapping("/signup")
     public String getSignUP(Model model){
         customerDto custDto = new customerDto();
