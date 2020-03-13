@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="stylesheet.css" type="text/css"/>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <h1>Contact Us</h1>
+        <header class = "navBar">
+                <span class="piece"><a href = "/signin"> Sign in </a></span>
+                <span class="piece"><a href = "/signup"> Sign up </a></span>
+                <span class="piece"><a href = "/tools">  Tools </a></span>
+                <span class="piece"><a href = "/index"> Home </a></span>
+                <span class="piece"><a href = "/checkout">  Checkout </a></span>
+                <span class="piece"><a href = "/projects">  Projects </a></span>
+        </header>
+        <div>
+            <p>Fill out the form below to ask us a question!</p>
+            <form action="contactUs.html">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="First Name">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Last Name">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="emailaddress" placeholder="Email">
+
+                <label for="content">Content</label>
+                <textarea id="content" name="content" placeholder="Something wrong? Let us know!" style="height:200px"></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>
