@@ -26,7 +26,7 @@ p{
 }
 
 .rightsReserved{
-	margin-top: 215px;
+	margin-top: 115px;
 	background-color: SteelBlue;
 }
 
@@ -44,14 +44,24 @@ input[type=text], select, textarea {
     box-sizing: border-box;
 }
 
-input[type=submit] {
+input[type=password], select, textarea {
+    width: 400px;
+    padding: 12px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+input[type=submit], button[type=submit], input[type=reset] {
     padding: 12px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.contactContainer {
+.container {
     text-align: left;
     display: inline-block;
 }

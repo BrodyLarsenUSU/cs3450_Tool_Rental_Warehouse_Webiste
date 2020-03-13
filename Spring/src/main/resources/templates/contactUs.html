@@ -17,15 +17,15 @@
         </header>
         <div>
             <p>Fill out the form below to ask us a question!</p>
-            <div class="contactContainer">
-                <form action="contactUs.html">
+            <div class="container">
+                <form action="contactUs.html" method="post" enctype="text/plain">
                     <label for="fname">First Name</label>
                     <br>
                     <input type="text" id="fname" name="firstname" placeholder="First Name">
                     <br>
                     <label for="lname">Last Name</label>
                     <br>
-                    <input type="text" id="lname" name="lastname" placeholder="Last Name">
+                    <input type="text" id="lnameSS" name="lastname" placeholder="Last Name">
                     <br>
                     <label for="email">Email</label>
                     <br>
@@ -35,11 +35,13 @@
                     <br>
                     <textarea id="content" name="content" placeholder="Something wrong? Let us know!" style="height:200px"></textarea>
                     <br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Send">
                 </form>
             </div>
         </div>
         <br>
+        <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
+        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
         <footer class="navBar">
             <span class="piece"><a href = "/contactUs"> Contact Us </a></span>
         </footer>

@@ -26,16 +26,16 @@
                 <a href="customer/signout">Sign Out</a>
             </span>
         </div>
-        <div class="forms" th:unless="${activeUser}">
+        <div class="container" th:unless="${activeUser}">
             <div th:if="${signInError}">
                 <p th:text="${error_message}"></p>
             </div>
             <form action = "/customer/signin" th:action="@{/customer/signin}" th:object="${loginUser}" method="POST">
                     <div>
-                        Username: <input type="text" th:field="*{username}"/> <br/><br/>
+                        Username:<br> <input type="text" th:field="*{username}" placeholder="Username"/> <br/><br/>
                     </div>
                     <div>
-                        Password: <input type="password" th:field="*{password}" /> <br /><br />
+                        Password:<br> <input type="password" th:field="*{password}" placeholder="Password"/> <br /><br />
                     </div>
                     <div>
                         <button type="submit" th.text="#{label.form.submit}">Log In</button> <input type="reset" value="Reset" /> <br />
@@ -45,6 +45,9 @@
         
         <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
         <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+        <footer class="navBar">
+            <span class="piece"><a href = "/contactUs"> Contact Us </a></span>
+        </footer>
 
 
     </body>

@@ -20,26 +20,26 @@
             <span class="piece"><a href = "/projects">  Projects </a></span>
 
 	</header>
-    
-    <div class="forms">
+    <p>Create an Account Here.</p>
+    <div class="container">
         <form action = "/customer" th:action="@{/customer}" th:object="${customer}" method="POST">
                 <div>
-                    First Name: <input type="text" th:field="*{firstName}" /> <br /><br />
+                    First Name:<br> <input type="text" th:field="*{firstName}" placeholder="First Name"/> <br /><br />
                 </div>
                 <div>
-                    Last Name: <input type="text" th:field="*{lastName}" /> <br /> <br />
+                    Last Name:<br> <input type="text" th:field="*{lastName}" placeholder="Last Name"/> <br /> <br />
                 </div>
                 <div>
-                    Age: <input type="text" th:field="*{age}" /> <br /><br />
+                    Age:<br> <input type="text" th:field="*{age}" placeholder="Age"/> <br /><br />
                 </div>
                 <div>
-                    Gender: <input type="text" th:field="*{gender}" /> <br /><br />
+                    Gender:<br> <input type="text" th:field="*{gender}" placeholder="Gender"/> <br /><br />
                 </div>
                 <div>
-                    Username: <input type="text" th:field="*{username}"/> <br/><br/>
+                    Username:<br> <input type="text" th:field="*{username}" placeholder="Gender"/> <br/><br/>
                 </div>
                 <div>
-                    Password: <input type="password" th:field="*{password}" /> <br /><br />
+                    Password:<br> <input type="password" th:field="*{password}" placeholder="Password"/> <br /><br />
                 </div>
                 <div>
                     <button type="submit" th.text="#{label.form.submit}">Submit</button> <input type="reset" value="Reset" /> <br />
@@ -47,6 +47,9 @@
         </form>
     </div>       
     <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
-    <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+        <footer class="navBar">
+            <span class="piece"><a href = "/contactUs"> Contact Us </a></span>
+        </footer>
     </body>
 </html>
