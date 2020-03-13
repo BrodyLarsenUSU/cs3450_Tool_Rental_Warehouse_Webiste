@@ -12,19 +12,34 @@ public class Customer{
 		private boolean active;
 		private boolean employee;
 		private String gender;
+		private String password;
 
 
-		Customer(){
-
+		public Customer(){
+			//firstName = "";
+			//lastName = "";
+			//age = 0;
+			//active = false;
+			//employee = false;
+			//gender = "";
 		}
 
-		Customer(String fn, String ln, int ag, boolean ac, boolean e, String g){
+		public Customer(String fn, String ln, int ag, boolean ac, boolean e, String g, String p){
 			firstName = fn;
 			lastName = ln;
 			age = ag;
 			active = ac;
 			employee = e;
 			gender = g;
+			password = p;
+		}
+
+		public String getPassword(){
+			return password;
+		}
+
+		public void setPassword(String password){
+			this.password = password;
 		}
 
 		public String getId() {
@@ -82,7 +97,4 @@ public class Customer{
 		public void setGender(String gender) {
 			this.gender = gender;
 		}
-
-		
-
 }
