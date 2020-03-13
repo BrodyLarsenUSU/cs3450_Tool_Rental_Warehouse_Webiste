@@ -67,6 +67,11 @@ public class WelcomeController extends Application {
         return "checkout";
     }
 
+    @RequestMapping("/contactus")
+    public String getContactUs(){
+        return "contactUs";
+    }
+
     @RequestMapping("/signin")
     public String getSignIn(Model model){
         loginDto loginDto = new loginDto();
