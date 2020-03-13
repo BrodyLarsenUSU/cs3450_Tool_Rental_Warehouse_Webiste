@@ -9,7 +9,7 @@
     <body>
     <div th:if="${addedSuccess}">
         <div class = "success-alert" id = "indexSuccessAlert" style = "display:none;">
-            <p th:text="${alert_message}"></p>
+            <p th:text="${alert_message + ' ' + name}"></p>
         </div>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script>
