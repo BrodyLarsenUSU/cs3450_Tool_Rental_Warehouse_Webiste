@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8"/>
-            <link rel="stylesheet" href="stylesheet.css" type="text/css"/>
-            <title>Tool WareHouse Sign Up</title>
-        </head>
-        <body>
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="stylesheet.css" type="text/css"/>
+        <title>Tool WareHouse Sign Up</title>
+    </head>
+    <body>
 
     <h1> SIGN UP PAGE </h1>
     <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
@@ -20,11 +20,33 @@
             <span class="piece"><a href = "/projects">  Projects </a></span>
 
 	</header>
-
-	<p> This is the sign up page. Sign up stuff goes here. <br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id eleifend magna, eu vehicula nisl. Praesent pharetra risus ut turpis tristique sagittis ut eu est. Vestibulum diam dui, gravida eu erat ut, dictum semper ante. Pellentesque in risus magna. Nam nec magna non enim fringilla pretium semper in ante. Nullam turpis ante, viverra vitae commodo in, mollis a erat. Mauris fringilla consectetur magna nec ullamcorper. Maecenas efficitur vel arcu non molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras elementum molestie purus quis ornare. In at dignissim est. Proin id condimentum odio. Etiam lobortis neque sed elit molestie iaculis vitae id ante. Nunc lacinia non ante ut vehicula.</p>
     
-        <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
-        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+    <form id="signUpForm" action = "/customer" th:action="@{/customer}" th:object="${customer}" method="POST">
+        <p>
+            <br />
+            <div>
+                First Name: <input type="text" th:field="*{firstName}" /> <br /><br />
+            </div>
+            <div>
+                Last Name: <input type="text" th:field="*{lastName}" /> <br /> <br />
+            </div>
+            <div>
+                Age: <input type="text" th:field="*{age}" /> <br /><br />
+            </div>
+            <div>
+                Gender: <input type="text" th:field="*{gender}" /> <br /><br />
+            </div>
+            <div>
+                Password: <input type="text" th:field="*{password}" /> <br /><br />
+            </div>
+            <div>
+                <button type="submit" th.text="#{label.form.submit}">Submit</button> <input type="reset" value="Reset" /> <br />
+            </div>
+            <br />
+        </p>
+    </form>       
+    <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
 
-        </body>
-    </html>
+        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+    </body>
+</html>
