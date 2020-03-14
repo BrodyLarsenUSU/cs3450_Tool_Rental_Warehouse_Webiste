@@ -72,6 +72,11 @@ public class WelcomeController extends Application {
         return "contactUs";
     }
 
+    @RequestMapping("/contact-form", method=RequestMethod.POST)
+    public String getContactForm(){
+        return "contact-form"
+    }
+
     @RequestMapping("/signin")
     public String getSignIn(Model model){
         loginDto loginDto = new loginDto();
