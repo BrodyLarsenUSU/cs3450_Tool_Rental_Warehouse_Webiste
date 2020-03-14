@@ -18,6 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 @Controller
 public class WelcomeController extends Application {
 
@@ -85,14 +93,14 @@ public class WelcomeController extends Application {
         String email = contactUsDto.getEmail();
         String message = contactUsDto.getMessage();
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("mail.smtp.host", "host");
         Session session = Session.getDefaultInstance(properties);
 
         try{
             MimeMessage content = new MimeMessage(session);
             content.setFrom(new InternetAddress(email));
             content.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            content.setSubject("New Contact Form Submission"):
+            content.setSubject("New Contact Form Submission");
             content.setText(message);
             Transport.send(content);
         }

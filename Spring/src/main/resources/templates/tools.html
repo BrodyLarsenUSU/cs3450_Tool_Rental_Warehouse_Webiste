@@ -30,18 +30,16 @@
             <th>On Hand</th>
             <th>Checked Out</th>
         </tr>
-        <tr th:each="tool:${tools}">
-            <td th:text="${{tool.category}}"></td>
-            <td th:text="${{tool.name}}"></td>
-            <td th:text="${{tool.value}}"></td>
-            <td th:text="${{tool.quantity}}"></td>
-            <td th:text="${{tool.onHand}}"></td>
-            <td th:text="${{tool.checkedOut}}"></td>
+        <tr class="toolCell" th:each="tool:${tools}">
+            <td class="toolCell" th:text="${{tool.category}}"></td>
+            <td class="toolCell" th:text="${{tool.name}}"></td>
+            <td class="toolCell" th:text="${{tool.value}}"></td>
+            <td class="toolCell" th:text="${{tool.quantity}}"></td>
+            <td class="toolCell" th:text="${{tool.onHand}}"></td>
+            <td class="toolCell" th:text="${{tool.checkedOut}}"></td>
         </tr>
     </table>
-
-	<p> This is the tools page. Tools stuff goes here. <br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id eleifend magna, eu vehicula nisl. Praesent pharetra risus ut turpis tristique sagittis ut eu est. Vestibulum diam dui, gravida eu erat ut, dictum semper ante. Pellentesque in risus magna. Nam nec magna non enim fringilla pretium semper in ante. Nullam turpis ante, viverra vitae commodo in, mollis a erat. Mauris fringilla consectetur magna nec ullamcorper. Maecenas efficitur vel arcu non molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras elementum molestie purus quis ornare. In at dignissim est. Proin id condimentum odio. Etiam lobortis neque sed elit molestie iaculis vitae id ante. Nunc lacinia non ante ut vehicula.</p>
-
+    
         <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
         <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
         <footer class="navBar">
