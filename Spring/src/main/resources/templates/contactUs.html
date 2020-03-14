@@ -6,6 +6,20 @@
         <title>Contact Us</title>
     </head>
     <body>
+        <div th:if="${formSuccess}">
+            <div class = "success-alert" id = "formSuccessAlert" style = "display:none;">
+                <p th:text="${successMessage}"></p>
+            </div>
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script>
+            //When the page has loaded.
+            $( document ).ready(function(){
+                $('#formSuccessAlert').fadeIn('slow', function(){
+                   $('#formSuccessAlert').delay(3000).fadeOut(); 
+                });
+            });
+            </script>
+        </div>
         <h1>Contact Us</h1>
         <header class = "navBar">
                 <span class="piece"><a href = "/signin"> Sign in </a></span>

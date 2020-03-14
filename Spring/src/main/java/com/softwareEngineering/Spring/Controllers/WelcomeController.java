@@ -83,6 +83,13 @@ public class WelcomeController extends Application {
         return "redirect:/contactus";
     }
 
+    @RequestMapping("/contact-form-success")
+    public String getContactFormSuccess(Model model){
+        model.addAttribute("formSuccess", true);
+        model.addAttribute("successMessage", "Email Sent Successfully");
+        return "contactus";
+    }
+
     @RequestMapping("/signin")
     public String getSignIn(Model model){
         loginDto loginDto = new loginDto();
