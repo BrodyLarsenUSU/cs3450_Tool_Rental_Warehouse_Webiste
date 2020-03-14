@@ -10,6 +10,35 @@ p{
     	background-color: SkyBlue;
 }
 
+.modal {
+	display: block;
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+	left: 0;
+	top: 0;
+}
+
+.modal_content {
+	margin: 20% auto;
+	width: 20%;
+    border: 1px;
+    background-color: white;
+    height: 20%;
+}
+
+#submitModal {
+    top: inherit;
+}
+
+.success-alert{
+	display: inline-block;
+	background-color: chartreuse;
+}
+
 .navBar{
 	display: block;
 	background-color: DodgerBlue;
