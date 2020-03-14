@@ -32,7 +32,7 @@
         <div>
             <p>Fill out the form below to ask us a question!</p>
             <div class="container">
-                <form th:action="@{/contact-form}" th:object=@{contactForm} method="POST">
+                <form th:action="@{/contact-form}" th:object="${contactForm}" method="POST">
                     <label for="fname">First Name</label>
                     <br>
                     <input type="text" id="fname" th:field="*{firstName}" name="firstname" placeholder="First Name">

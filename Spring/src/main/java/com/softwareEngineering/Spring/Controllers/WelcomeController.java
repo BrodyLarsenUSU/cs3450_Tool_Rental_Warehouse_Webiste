@@ -5,6 +5,12 @@ import com.softwareEngineering.Spring.Repositories.CustomerRepository;
 import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
+
 import com.softwareEngineering.Spring.Application;
 import com.softwareEngineering.Spring.Models.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,19 +88,26 @@ public class WelcomeController extends Application {
 
     @RequestMapping("/contactus")
     public String getContactUs(Model model){
-        model.addAttribute("contactForm", new ContactUsDto());
+        ContactUsDto contactDto = new ContactUsDto();
+        model.addAttribute("contactForm", contactDto);
         return "contactUs";
     }
 
     @PostMapping("/contact-form")
     public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto){
+        System.out.println("Into Form");
         String to = "kostandinos.sergakis@aggiemail.usu.edu";
         String name = contactUsDto.getFirstName() + " " + contactUsDto.getLastName();
         String email = contactUsDto.getEmail();
-        String message = contactUsDto.getMessage();
+        String message = "From: " + name + "\n" + contactUsDto.getMessage();
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", "host");
+        System.out.println("Test1");
+        String host = "smtp.gmail.com";
+        System.out.println("Test2");
+        properties.setProperty("mail.smtp.host", host);
         Session session = Session.getDefaultInstance(properties);
+        System.out.println("Test3");
+
 
         try{
             MimeMessage content = new MimeMessage(session);
@@ -102,7 +115,9 @@ public class WelcomeController extends Application {
             content.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             content.setSubject("New Contact Form Submission");
             content.setText(message);
+            System.out.println("Test4");
             Transport.send(content);
+            System.out.println("Email sent");
         }
         catch (MessagingException mex) {
             mex.printStackTrace();
@@ -116,7 +131,7 @@ public class WelcomeController extends Application {
         model.addAttribute("formSuccess", true);
         model.addAttribute("successMessage", "Email Sent Successfully");
 
-        return "contactus";
+        return "contactUs";
     }
 
     @RequestMapping("/signin")
