@@ -80,6 +80,26 @@ public class WelcomeController extends Application {
 
     @PostMapping("/contact-form")
     public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto){
+        String to = "kostandinos.sergakis@aggiemail.usu.edu";
+        String name = contactUsDto.getFirstName() + " " + contactUsDto.getLastName();
+        String email = contactUsDto.getEmail();
+        String message = contactUsDto.getMessage();
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+        Session session = Session.getDefaultInstance(properties);
+
+        try{
+            MimeMessage content = new MimeMessage(session);
+            content.setFrom(new InternetAddress(email));
+            content.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            content.setSubject("New Contact Form Submission"):
+            content.setText(message);
+            Transport.send(content);
+        }
+        catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+
         return "redirect:/contact-form-success";
     }
 
@@ -87,6 +107,7 @@ public class WelcomeController extends Application {
     public String getContactFormSuccess(Model model){
         model.addAttribute("formSuccess", true);
         model.addAttribute("successMessage", "Email Sent Successfully");
+
         return "contactus";
     }
 
