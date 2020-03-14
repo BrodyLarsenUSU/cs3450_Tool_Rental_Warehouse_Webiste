@@ -10,8 +10,12 @@ p{
     	background-color: SkyBlue;
 }
 
+.close{
+    float: right;
+}
+
 .modal {
-	display: block;
+	display: none;
 	position: fixed;
 	z-index: 1;
 	width: 100%;
