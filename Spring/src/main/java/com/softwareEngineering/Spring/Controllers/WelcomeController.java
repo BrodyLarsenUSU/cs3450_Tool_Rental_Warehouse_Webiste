@@ -80,7 +80,7 @@ public class WelcomeController extends Application {
 
     @PostMapping("/contact-form")
     public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto){
-        return "redirect:/contactus";
+        return "redirect:/contact-form-success";
     }
 
     @RequestMapping("/contact-form-success")
