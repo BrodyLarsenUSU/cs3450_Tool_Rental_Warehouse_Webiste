@@ -78,14 +78,9 @@ public class WelcomeController extends Application {
         return "contactUs";
     }
 
-    // @RequestMapping(value="/contact-form", method=RequestMethod.POST)
-    // public @ResponseBody String getContactForm(){
-    //     return "contact-form";
-    // }
-
     @PostMapping("/contact-form")
     public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto){
-        return "";
+        return "redirect:/contactus";
     }
 
     @RequestMapping("/signin")
