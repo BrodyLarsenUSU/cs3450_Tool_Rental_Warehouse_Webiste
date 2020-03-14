@@ -18,22 +18,22 @@
         <div>
             <p>Fill out the form below to ask us a question!</p>
             <div class="container">
-                <form action="contact-form.php" th:action="@{/contact-form.php}" method="POST">
+                <form th:action="@{/contact-form}" th:object=@{contactForm} method="POST">
                     <label for="fname">First Name</label>
                     <br>
-                    <input type="text" id="fname" name="firstname" placeholder="First Name">
+                    <input type="text" id="fname" th:field="*{firstName}" name="firstname" placeholder="First Name">
                     <br>
                     <label for="lname">Last Name</label>
                     <br>
-                    <input type="text" id="lname" name="lastname" placeholder="Last Name">
+                    <input type="text" id="lname" th:field="*{lastName}" name="lastname" placeholder="Last Name">
                     <br>
                     <label for="email">Email</label>
                     <br>
-                    <input type="text" id="email" name="emailaddress" placeholder="Email">
+                    <input type="text" id="email" th:field="*{email}" name="emailaddress" placeholder="Email">
                     <br>
                     <label for="content">Content</label>
                     <br>
-                    <textarea id="content" name="content" placeholder="Something wrong? Let us know!" style="height:200px"></textarea>
+                    <textarea id="content" name="content" th:field="*{message}" placeholder="Something wrong? Let us know!" style="height:200px"></textarea>
                     <br>
                     <input type="submit" value="Send">
                 </form>

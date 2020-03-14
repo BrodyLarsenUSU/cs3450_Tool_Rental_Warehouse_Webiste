@@ -2,6 +2,7 @@ package com.softwareEngineering.Spring.Controllers;
 
 import com.softwareEngineering.Spring.Repositories.ToolRepository;
 import com.softwareEngineering.Spring.Repositories.CustomerRepository;
+import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
 import com.softwareEngineering.Spring.Application;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,13 +73,19 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/contactus")
-    public String getContactUs(){
+    public String getContactUs(Model model){
+        model.addAttribute("contactForm", new ContactUsDto());
         return "contactUs";
     }
 
-    @RequestMapping(value="/contact-form", method=RequestMethod.POST)
-    public @ResponseBody String getContactForm(){
-        return "contact-form";
+    // @RequestMapping(value="/contact-form", method=RequestMethod.POST)
+    // public @ResponseBody String getContactForm(){
+    //     return "contact-form";
+    // }
+
+    @PostMapping("/contact-form")
+    public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto){
+        return "";
     }
 
     @RequestMapping("/signin")
