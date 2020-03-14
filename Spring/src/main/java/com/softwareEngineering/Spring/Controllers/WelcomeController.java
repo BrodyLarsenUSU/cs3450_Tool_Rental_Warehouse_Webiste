@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
@@ -73,8 +74,8 @@ public class WelcomeController extends Application {
         return "contactUs";
     }
 
-    @RequestMapping("/contact-form", method=RequestMethod.POST)
-    public String getContactForm(){
+    @RequestMapping(value="/contact-form", method=RequestMethod.POST)
+    public @ResponseBody String getContactForm(){
         return "contact-form";
     }
 
