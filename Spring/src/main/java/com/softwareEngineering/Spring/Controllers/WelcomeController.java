@@ -94,20 +94,24 @@ public class WelcomeController extends Application {
     }
 
     @PostMapping("/contact-form")
-    public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto){
+    public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto, Model model){
         System.out.println("Into Form");
-        String to = "kostandinos.sergakis@aggiemail.usu.edu";
+        String to = "419223f1e0-df6321@inbox.mailtrap.io";
         String name = contactUsDto.getFirstName() + " " + contactUsDto.getLastName();
         String email = contactUsDto.getEmail();
         String message = "From: " + name + "\n" + contactUsDto.getMessage();
         Properties properties = System.getProperties();
-        System.out.println("Test1");
-        String host = "smtp.gmail.com";
-        System.out.println("Test2");
-        properties.setProperty("mail.smtp.host", host);
-        Session session = Session.getDefaultInstance(properties);
-        System.out.println("Test3");
-
+        properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.mailtrap.io");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.ssl.trust", "smtp.mailtrap.io");
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("9076e525e32acb", "2297149a0e1438");
+            }
+        });
 
         try{
             MimeMessage content = new MimeMessage(session);
@@ -121,6 +125,7 @@ public class WelcomeController extends Application {
         }
         catch (MessagingException mex) {
             mex.printStackTrace();
+            return "redirect:/contact-form-fail";
         }
 
         return "redirect:/contact-form-success";
@@ -130,7 +135,8 @@ public class WelcomeController extends Application {
     public String getContactFormSuccess(Model model){
         model.addAttribute("formSuccess", true);
         model.addAttribute("successMessage", "Email Sent Successfully");
-
+        ContactUsDto contactDto = new ContactUsDto();
+        model.addAttribute("contactForm", contactDto);
         return "contactUs";
     }
 
