@@ -19,22 +19,37 @@ input[type=password], select, textarea {
 }
 
 input[type=submit], button[type=submit], input[type=reset] {
+    background-color: #66c2ff;
+    color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
+input[type=submit]:hover, button[type=submit]:hover, input[type=reset]:hover {
+    background-color: #39b0ff;
+}
+
+html * {
+    font-family: Arial !important;
+}
+
 body
 {	
-	background-color: SteelBlue;
+	background-color: white;
 	text-align: center;
 }
 
 p{
-    	font-family: monospace, Droid Sans, Arial, cursive;
-    	font-style: italic;
-    	background-color: SkyBlue;
+    font-family: monospace, Droid Sans, Arial, cursive;
+    	
+}
+
+.header {
+    background-color: #d9d9d9;
+    text-align: center;
+    padding: 10px;
 }
 
 .close{
@@ -73,6 +88,56 @@ p{
 	padding: 20px 7px 20px 7px;
 }
 
+.testNavBar {
+    display: block;
+    background-color: #555;
+    white-space: nowrap;
+	padding: 0px 0px 0px 0px;
+}
+
+.testNavBar li{
+    display: block;
+    float: left;
+    color: white;
+    text-align: center;
+}
+
+.testNavBar li a{
+    display: block;
+    color: white;
+    padding: 12px 14px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.testNavBar li a:hover:not(.active) {
+    background-color: #333;
+}
+
+.testNavBar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #555;
+    position: sticky;
+    top: 0;
+    justify-content: center !important;
+
+}
+
+.testpiece{
+	background-color: #555;
+	color: white;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	font-style: italic;
+}
+
+.active { 
+    background-color: #66c2ff;
+}
+
 .piece{
 	background-color: DodgerBlue;
 	color: darkblue;
@@ -92,8 +157,8 @@ p{
 }
 
 .rightsReserved{
-	margin-top: 115px;
-	background-color: SteelBlue;
+    margin-top: 115px;
+    font-style: italic;
 }
 
 .redBar{

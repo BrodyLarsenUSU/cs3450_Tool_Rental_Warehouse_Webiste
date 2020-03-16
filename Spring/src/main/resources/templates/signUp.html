@@ -7,19 +7,22 @@
     </head>
     <body>
 
-    <h1> SIGN UP PAGE </h1>
-    <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
-
-
-    <header class = "navBar">
-            <span class="piece"><a href = "/signin"> Sign in </a></span>
-            <span class="piece"><a href = "/signup"> Sign up </a></span>
-            <span class="piece"><a href = "/tools">  Tools </a></span>
-            <span class="piece"><a href = "/index"> Home </a></span>
-            <span class="piece"><a href = "/checkout">  Checkout </a></span>
-            <span class="piece"><a href = "/projects">  Projects </a></span>
-
-	</header>
+    <div class="header">
+        <h1>SIGN UP PAGE</h1>
+        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
+    </div>
+    <header class ="testNavBar">
+        <ul>
+            <li><a href="/signin">Sign In</a></li>
+            <li><a class="active" href="/signup">Sign up</a></li>
+            <li><a href="/tools">Tools</a></li>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/checkout">Checkout</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li style="float:right"><a href="/contactus">Contact Us</a></li>
+        </ul>
+    </header>
+    
     <p>Create an Account Here.</p>
     <div class="container">
         <form action = "/customer" th:action="@{/customer}" th:object="${customer}" method="POST">
@@ -48,8 +51,5 @@
     </div>       
     <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
         <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
-        <footer class="navBar">
-            <span class="piece"><a href = "/contactus"> Contact Us </a></span>
-        </footer>
     </body>
 </html>
