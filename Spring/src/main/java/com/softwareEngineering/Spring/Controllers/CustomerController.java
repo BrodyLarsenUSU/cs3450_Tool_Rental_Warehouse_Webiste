@@ -2,6 +2,8 @@ package com.softwareEngineering.Spring.Controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -24,17 +26,17 @@ import org.springframework.web.bind.annotation.*;
 
 @EnableAutoConfiguration
 @Controller
-public class CustomerController extends Application{
+public class CustomerController extends Application {
 	@Autowired
 	private CustomerRepository customerRepository;
 
 	@GetMapping("/customer")
-	public String getDB(Model model){
+	public String getDB(Model model) {
 		return "index";
 	}
 
 	@PostMapping("/customer")
-	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto, Model model){
+	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto, HttpServletRequest request, Model model){
 		Customer registered = new Customer();
 		registered.setFirstName(customerDto.getFirstName());
 		registered.setLastName(customerDto.getLastName());
@@ -43,16 +45,18 @@ public class CustomerController extends Application{
 		registered.setPassword(customerDto.getPassword());
 		registered.setUsername(customerDto.getUsername());
 		customerRepository.save(registered);
-		activeUser = registered;
+		HttpSession session = request.getSession();
+		session.setAttribute("activeUser", registered);
 		return "redirect:/index-add-success";
 	}
 
 	@PostMapping("/customer/signin")
-	public String loginCustomer(@ModelAttribute("loginUser") loginDto loginDto, Model model){
+	public String loginCustomer(@ModelAttribute("loginUser") loginDto loginDto, HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
 		Customer temp = customerRepository.findCustomerByUsername(loginDto.getUsername());
 		if(temp != null){
 			if(loginDto.getPassword().compareTo(temp.getPassword()) == 0){
-				activeUser = temp;
+				session.setAttribute("activeUser", temp);
 				return "redirect:/index-login-success";
 			}
 		}
@@ -60,8 +64,9 @@ public class CustomerController extends Application{
 	}
 
 	@RequestMapping("/customer/signout")
-	public String signoutCustomer(){
-		activeUser = null;
+	public String signoutCustomer(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.setAttribute("activeUser", null);
 		return "redirect:/index-logout-success";
 	}
 }

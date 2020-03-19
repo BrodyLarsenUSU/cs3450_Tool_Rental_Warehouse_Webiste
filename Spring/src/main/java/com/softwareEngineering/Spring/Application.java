@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
-	public static Customer activeUser;
+	// public static Customer activeUser;
 
 	public static void main(String[] args) {
-		activeUser = null;
+		// activeUser = null;
 		SpringApplication.run(Application.class, args);
 	}
 

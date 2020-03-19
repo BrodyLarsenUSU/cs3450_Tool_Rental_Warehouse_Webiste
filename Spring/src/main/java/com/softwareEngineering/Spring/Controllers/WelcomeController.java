@@ -5,6 +5,7 @@ import com.softwareEngineering.Spring.Repositories.CustomerRepository;
 import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+import com.softwareEngineering.Spring.Models.*;
 
 import java.util.*;
 import javax.mail.*;
@@ -30,6 +31,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.util.Properties;
 
 @Controller
@@ -52,18 +56,20 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/index-add-success")
-    public String getIndexAddSuccess(Model model){
+    public String getIndexAddSuccess(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         model.addAttribute("addedSuccess", true);
         model.addAttribute("alert_message", "Successfully Created Account");
-        model.addAttribute("name", activeUser.getFirstName() + " " + activeUser.getLastName());
+        model.addAttribute("name", ((Customer) session.getAttribute("activeUser")).getFirstName() + " " + ((Customer) session.getAttribute("activeUser")).getLastName());
         return "index";
     }
 
     @RequestMapping("/index-login-success")
-    public String getIndexLoginSuccess(Model model){
+    public String getIndexLoginSuccess(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         model.addAttribute("addedSuccess", true);
         model.addAttribute("alert_message", "Successfully Logged In");
-        model.addAttribute("name", activeUser.getFirstName() + " " + activeUser.getLastName());
+        model.addAttribute("name", ((Customer) session.getAttribute("activeUser")).getFirstName() + " " + ((Customer) session.getAttribute("activeUser")).getLastName());
         return "index";
     }
 
@@ -141,22 +147,24 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/signin")
-    public String getSignIn(Model model){
+    public String getSignIn(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         loginDto loginDto = new loginDto();
         model.addAttribute("loginUser", loginDto);
-        if(activeUser != null){
+        if(session.getAttribute("activeUser") != null){
             model.addAttribute("activeUser", true);
         }
         return "signIn";
     }
 
     @RequestMapping("/signin-error")
-    public String getSignInError(Model model){
+    public String getSignInError(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         loginDto loginDto = new loginDto();
         model.addAttribute("signInError", true);
         model.addAttribute("error_message", "Failed to Sign In");
         model.addAttribute("loginUser", loginDto);
-        if(activeUser != null){
+        if(session.getAttribute("activeUser") != null){
             model.addAttribute("activeUser", true);
         }
         return "signIn";
