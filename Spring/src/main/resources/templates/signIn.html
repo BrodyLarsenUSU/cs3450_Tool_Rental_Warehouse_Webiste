@@ -29,20 +29,15 @@
                 <a href="customer/signout">Sign Out</a>
             </span>
         </div>
+        <p>Sign In here!</p>
         <div class="container" th:unless="${activeUser}">
             <div th:if="${signInError}">
                 <p th:text="${error_message}"></p>
             </div>
             <form action = "/customer/signin" th:action="@{/customer/signin}" th:object="${loginUser}" method="POST">
-                    <div>
-                        Username:<br> <input type="text" th:field="*{username}" placeholder="Username"/> <br/><br/>
-                    </div>
-                    <div>
-                        Password:<br> <input type="password" th:field="*{password}" placeholder="Password"/> <br /><br />
-                    </div>
-                    <div>
-                        <button type="submit" th.text="#{label.form.submit}">Log In</button> <input type="reset" value="Reset" /> <br />
-                    </div>
+                <input type="text" th:field="*{username}" placeholder="Username"/> <br/>
+                <input type="password" th:field="*{password}" placeholder="Password"/> <br/>
+                <button type="submit" th.text="#{label.form.submit}">Log In</button> <input type="reset" value="Reset" /> <br />
             </form>
         </div>
         
