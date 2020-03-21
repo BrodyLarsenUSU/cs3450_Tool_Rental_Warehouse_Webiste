@@ -35,6 +35,14 @@
                 <li style="float:right"><a class="active" href="/contactus">Contact Us</a></li>
             </ul>
         </header>
+        <!--<header class = "testNavBar">
+                <span class="testpiece"><a href = "/signin"> Sign in </a></span>
+                <span class="testpiece"><a href = "/signup"> Sign up </a></span>
+                <span class="testpiece"><a href = "/tools">  Tools </a></span>
+                <span class="testpiece"><a href = "/index"> Home </a></span>
+                <span class="testpiece"><a href = "/checkout">  Checkout </a></span>
+                <span class="testpiece"><a href = "/projects">  Projects </a></span>
+        </header>-->
         <div>
             <p>Fill out the form below to ask us a question!</p>
             <div class="container">
@@ -47,6 +55,29 @@
                 </form>
             </div>
         </div>
+        <br>
+        <div align="center">
+            <div id="googleMap" style="width:50%;height:400px;" ></div>
+        </div>
+        <script>
+        function myMap() {
+
+        var mapCenter = new google.maps.LatLng(41.740968, -111.814296);
+        
+        var mapProp= {
+          center: mapCenter,
+          zoom:15,
+        };
+
+    
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        
+        var marker = new google.maps.Marker({position: mapCenter});
+        marker.setMap(map);
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGtCcU9BvKg5KKzaxx4erB-9sPL1MrJLQ&callback=myMap"></script>
+
         <br>
         <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
         <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
