@@ -88,7 +88,6 @@ public class WelcomeController extends Application {
         Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("tools", toolRepo.findAll());
         if(temp != null){
-            System.out.println("User is signed in");
             model.addAttribute("signedIn", true);
             model.addAttribute("toolDto", new toolDto());
         }
@@ -106,7 +105,17 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/checkout")
-    public String getCheckout(){
+    public String getCheckout(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            ArrayList<Tool> toolList = new ArrayList<>();;
+            for(String s : temp.getReservedTools()){
+                toolList.add(toolRepo.findToolById(s));
+            }
+            model.addAttribute("reservedTools", toolList);
+        }
         return "checkout";
     }
 
