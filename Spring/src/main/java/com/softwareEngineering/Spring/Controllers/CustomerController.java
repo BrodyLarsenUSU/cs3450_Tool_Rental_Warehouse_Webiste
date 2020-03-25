@@ -12,6 +12,7 @@ import com.softwareEngineering.Spring.Application;
 import com.softwareEngineering.Spring.Models.*;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+import com.softwareEngineering.Spring.Models.DTOs.toolDto;
 import com.softwareEngineering.Spring.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController extends Application {
 	@Autowired
 	private CustomerRepository customerRepository;
+	@Autowired
+	private ToolRepository toolRepo;
 
 	@GetMapping("/customer")
 	public String getDB(Model model) {
@@ -68,5 +71,15 @@ public class CustomerController extends Application {
 		HttpSession session = request.getSession();
 		session.setAttribute("activeUser", null);
 		return "redirect:/index-logout-success";
+	}
+
+	@PostMapping("/customer/reserveTool")
+	public String reserveTool(@ModelAttribute("toolDto") toolDto toolDto, Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Customer temp = (Customer)session.getAttribute("activeUser");
+		temp.addToolToReserve(toolDto.getId());
+		session.setAttribute("activeUser", temp);
+		customerRepository.save(temp);
+		return "redirect:/tools-success";
 	}
 }

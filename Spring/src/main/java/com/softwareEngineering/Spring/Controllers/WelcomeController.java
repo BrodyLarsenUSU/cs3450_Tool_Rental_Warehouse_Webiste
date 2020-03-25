@@ -5,6 +5,7 @@ import com.softwareEngineering.Spring.Repositories.CustomerRepository;
 import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+import com.softwareEngineering.Spring.Models.DTOs.toolDto;
 import com.softwareEngineering.Spring.Models.*;
 
 import java.util.*;
@@ -82,8 +83,25 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/tools")
-    public String getTools(Model model){
+    public String getTools(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("tools", toolRepo.findAll());
+        if(temp != null){
+            System.out.println("User is signed in");
+            model.addAttribute("signedIn", true);
+            model.addAttribute("toolDto", new toolDto());
+        }
+        return "tools";
+    }
+
+    @RequestMapping("/tools-success")
+    public String getToolsSuccess(Model model){
+        model.addAttribute("tools", toolRepo.findAll());
+        model.addAttribute("signedIn", true);
+        model.addAttribute("toolDto", new toolDto());
+        model.addAttribute("checkoutSuccess", true);
+        model.addAttribute("alert_message", "Tool Reserved");
         return "tools";
     }
 

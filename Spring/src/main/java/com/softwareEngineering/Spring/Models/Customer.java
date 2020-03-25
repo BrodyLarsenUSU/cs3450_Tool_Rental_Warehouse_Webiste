@@ -1,5 +1,7 @@
 package com.softwareEngineering.Spring.Models;
 
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 
 public class Customer{
@@ -14,6 +16,8 @@ public class Customer{
 		private String gender;
 		private String password;
 		private String username;
+		private ArrayList<String> checkedOutTools;
+		private ArrayList<String> reservedTools;
 
 		public Customer(){
 			//firstName = "";
@@ -22,6 +26,8 @@ public class Customer{
 			//active = false;
 			//employee = false;
 			//gender = "";
+			checkedOutTools = new ArrayList<>();
+			reservedTools = new ArrayList<>();
 		}
 
 		public Customer(String fn, String ln, int ag, boolean ac, boolean e, String g, String p, String u){
@@ -33,8 +39,39 @@ public class Customer{
 			gender = g;
 			password = p;
 			username = u;
+			checkedOutTools = new ArrayList<>();
+			reservedTools = new ArrayList<>();
 		}
 
+		public void addToolToReserve(String id){
+			reservedTools.add(id);
+		}
+
+		public void addToolToCheckedOut(String id){
+			checkedOutTools.add(id);
+		}
+
+
+
+
+
+		//Getters and Setters
+
+		public ArrayList<String> getCheckedOutTools() {
+			return this.checkedOutTools;
+		}
+
+		public void setCheckedOutTools(ArrayList<String> checkedOutTools) {
+			this.checkedOutTools = checkedOutTools;
+		}
+
+		public ArrayList<String> getReservedTools() {
+			return this.reservedTools;
+		}
+
+		public void setReservedTools(ArrayList<String> reservedTools) {
+			this.reservedTools = reservedTools;
+		}
 
 		public String getUsername() {
 			return this.username;

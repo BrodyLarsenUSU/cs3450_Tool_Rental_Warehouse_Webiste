@@ -6,43 +6,63 @@
             <title>Tool WareHouse Tools</title>
         </head>
         <body>
+            <div th:if="${checkoutSuccess}">
+                <div class = "success-alert" id = "indexSuccessAlert" style = "display:none;">
+                    <p th:text="${alert_message}"></p>
+                </div>
+                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                <script>
+                //When the page has loaded.
+                $( document ).ready(function(){
+                    $('#indexSuccessAlert').fadeIn('slow', function(){
+                       $('#indexSuccessAlert').delay(3000).fadeOut(); 
+                    });
+                });
+                </script>
+            </div>
 
-    <div class="header">
-        <h1>TOOLS PAGE</h1>
-        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
-    </div>
-    <header class ="testNavBar">
-        <ul>
-            <li><a href="/signin">Sign In</a></li>
-            <li><a href="/signup">Sign up</a></li>
-            <li><a class="active" href="/tools">Tools</a></li>
-            <li><a href="/index">Home</a></li>
-            <li><a href="/checkout">Checkout</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li style="float:right"><a href="/contactus">Contact Us</a></li>
-        </ul>
-    </header>
+            <div class="header">
+                <h1>TOOLS PAGE</h1>
+                <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
+            </div>
+            <header class ="testNavBar">
+                <ul>
+                    <li><a href="/signin">Sign In</a></li>
+                    <li><a href="/signup">Sign up</a></li>
+                    <li><a class="active" href="/tools">Tools</a></li>
+                    <li><a href="/index">Home</a></li>
+                    <li><a href="/checkout">Checkout</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li style="float:right"><a href="/contactus">Contact Us</a></li>
+                </ul>
+            </header>
 
-    <table align="center">
-        <tr>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Value</th>
-            <th>Quantity</th>
-            <th>On Hand</th>
-            <th>Checked Out</th>
-        </tr>
-        <tr class="toolCell" th:each="tool:${tools}">
-            <td class="toolCell" th:text="${{tool.category}}"></td>
-            <td class="toolCell" th:text="${{tool.name}}"></td>
-            <td class="toolCell" th:text="${{tool.value}}"></td>
-            <td class="toolCell" th:text="${{tool.quantity}}"></td>
-            <td class="toolCell" th:text="${{tool.onHand}}"></td>
-            <td class="toolCell" th:text="${{tool.checkedOut}}"></td>
-        </tr>
-    </table>
+            <table align="center">
+                <tr>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Quantity</th>
+                    <th>On Hand</th>
+                    <th>Checked Out</th>
+                </tr>
+                <tr class="toolCell" th:each="tool:${tools}">
+                    <td class="toolCell" th:text="${{tool.category}}"></td>
+                    <td class="toolCell" th:text="${{tool.name}}"></td>
+                    <td class="toolCell" th:text="${{tool.value}}"></td>
+                    <td class="toolCell" th:text="${{tool.quantity}}"></td>
+                    <td class="toolCell" th:text="${{tool.onHand}}"></td>
+                    <td class="toolCell" th:text="${{tool.checkedOut}}"></td>
+                    <td th:if="${signedIn}" class="toolCell">
+                        <form th:action="@{/customer/reserveTool}" th:object="${toolDto}" method="POST">
+                            <input type="hidden" th:name="id" th:value="${{tool.id}}">
+                            <button type="submit" th.text="#{label.form.submit}">Checkout</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
 
-        <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
-        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+                <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
+                <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
         </body>
     </html>
