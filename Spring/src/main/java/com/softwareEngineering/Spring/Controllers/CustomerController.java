@@ -82,4 +82,14 @@ public class CustomerController extends Application {
 		customerRepository.save(temp);
 		return "redirect:/tools-success";
 	}
+
+	@PostMapping("/customer/removeReservation")
+	public String removeReservation(@ModelAttribute("toolDto") toolDto toolDto, Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Customer temp = (Customer)session.getAttribute("activeUser");
+		temp.removeReservation(toolDto.getId());
+		session.setAttribute("activeUser", temp);
+		customerRepository.save(temp);
+		return "redirect:/checkout";
+	}
 }

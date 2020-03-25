@@ -51,6 +51,10 @@ public class Customer{
 			checkedOutTools.add(id);
 		}
 
+		public void removeReservation(String id) {
+			reservedTools.remove(id);
+		}
+
 
 
 
@@ -148,4 +152,5 @@ public class Customer{
 		public String toString(){
 			return firstName + " " + lastName;
 		}
+
 }
