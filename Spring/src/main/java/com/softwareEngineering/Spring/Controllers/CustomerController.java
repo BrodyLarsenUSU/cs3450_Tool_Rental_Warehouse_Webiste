@@ -14,6 +14,8 @@ import com.softwareEngineering.Spring.Models.*;
 import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+import com.softwareEngineering.Spring.Models.DTOs.lookupDto;
+import com.softwareEngineering.Spring.Models.DTOs.removeToolDto;
 import com.softwareEngineering.Spring.Models.DTOs.toolDto;
 import com.softwareEngineering.Spring.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,4 +113,11 @@ public class CustomerController extends Application {
 		customerRepository.save(cust);
 		return "redirect:/checkout-success";
 	}
-}
+
+	@PostMapping("/customer/lookup")
+	public String lookupCustomer(@ModelAttribute("lookupDto") lookupDto lookupDto, Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Customer temp = customerRepository.findCustomerById(lookupDto.getId());
+		session.setAttribute("lookupDto", temp);
+		return "redirect:/employeePortal-customer-search";
+	}
