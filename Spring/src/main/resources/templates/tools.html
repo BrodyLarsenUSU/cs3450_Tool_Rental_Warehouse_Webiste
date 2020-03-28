@@ -38,28 +38,6 @@
             </header>
 
             <table align="center" id="toolTable">
-                <tr>
-                    <th>Category</th>
-                    <th>Name</th>
-                    <th>Value</th>
-                    <th>Quantity</th>
-                    <th>On Hand</th>
-                    <th>Checked Out</th>
-                </tr>
-                <!--<tr class="toolCell" th:each="tool:${tools}">-->
-                    <!--<td class="toolCell" th:text="${{tool.category}}"></td>-->
-                    <!--<td class="toolCell" th:text="${{tool.name}}"></td>-->
-                    <!--<td class="toolCell" th:text="${{tool.value}}"></td>-->
-                    <!--<td class="toolCell" th:text="${{tool.quantity}}"></td>-->
-                    <!--<td class="toolCell" th:text="${{tool.onHand}}"></td>-->
-                    <!--<td class="toolCell" th:text="${{tool.checkedOut}}"></td>-->
-                    <!--<td th:if="${signedIn}" class="toolCell">-->
-                        <!--<form th:action="@{/customer/reserveTool}" th:object="${toolDto}" method="POST">-->
-                            <!--<input type="hidden" th:name="id" th:value="${{tool.id}}">-->
-                            <!--<button type="submit" th.text="#{label.form.submit}">Checkout</button>-->
-                        <!--</form>-->
-                    <!--</td>-->
-                <!--</tr>-->
             </table>
 
             <script th:inline="javascript">
@@ -69,14 +47,48 @@
                 initialize();
 
                 function initialize(){
+                    wipe();
+
                     for(var i in list){
                         addTool(list[i]);
                     }
                 }
 
                 function wipe(){
-                    console.log(table);
+                    var nextToDelete = table.lastElementChild;
+                    while(nextToDelete){
+                        nextToDelete.remove();
+                        nextToDelete = table.lastElementChild;
+                    }
+
+                    var tableRow = document.createElement("tr");
+                    table.appendChild(tableRow);
+
+                    var td1 = document.createElement("td");
+                    td1.innerHTML = "Category";
+                    tableRow.appendChild(td1);
+
+                    var td2 = document.createElement("td");
+                    td2.innerHTML = "Name";
+                    tableRow.appendChild(td2);
+
+                    var td3 = document.createElement("td");
+                    td3.innerHTML = "Value";
+                    tableRow.appendChild(td3);
+
+                    var td4 = document.createElement("td");
+                    td4.innerHTML = "Quantity";
+                    tableRow.appendChild(td4);
+
+                    var td5 = document.createElement("td");
+                    td5.innerHTML = "On Hand";
+                    tableRow.appendChild(td5);
+
+                    var td6 = document.createElement("td");
+                    td6.innerHTML = "Checked Out";
+                    tableRow.appendChild(td6);
                 }
+
                 function addTool(tool){
 
                     var tableRow = document.createElement("tr");
@@ -106,6 +118,13 @@
                     var td6 = document.createElement("td");
                     td6.innerHTML = tool.checkedOut;
                     tableRow.appendChild(td6);
+
+                    <!--<td th:if="${signedIn}" class="toolCell">-->
+                        <!--<form th:action="@{/customer/reserveTool}" th:object="${toolDto}" method="POST">-->
+                            <!--<input type="hidden" th:name="id" th:value="${{tool.id}}">-->
+                            <!--<button type="submit" th.text="#{label.form.submit}">Checkout</button>-->
+                        <!--</form>-->
+                    <!--</td>-->
                 }
             </script>
 
