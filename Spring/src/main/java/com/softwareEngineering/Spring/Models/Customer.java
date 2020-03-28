@@ -47,12 +47,14 @@ public class Customer{
 			reservedTools.add(id);
 		}
 
-		public void addToolToCheckedOut(String id){
-			checkedOutTools.add(id);
+		public void addToolsToCheckedOut(ArrayList<String> ids){
+			checkedOutTools.addAll(ids);
+			reservedTools.removeAll(ids);
 		}
 
 		public void removeReservation(String id) {
 			reservedTools.remove(id);
+			System.out.println("Removing " + id + " from Reserve");
 		}
 
 

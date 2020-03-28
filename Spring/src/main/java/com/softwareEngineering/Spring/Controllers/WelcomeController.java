@@ -3,6 +3,7 @@ package com.softwareEngineering.Spring.Controllers;
 import com.softwareEngineering.Spring.Repositories.ToolRepository;
 import com.softwareEngineering.Spring.Repositories.CustomerRepository;
 import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
+import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
 import com.softwareEngineering.Spring.Models.DTOs.toolDto;
@@ -115,7 +116,24 @@ public class WelcomeController extends Application {
                 toolList.add(toolRepo.findToolById(s));
             }
             model.addAttribute("reservedTools", toolList);
+            model.addAttribute("checkoutDto", new checkoutDto());
         }
+        return "checkout";
+    }
+
+    @RequestMapping("/checkout-success")
+    public String getCheckoutSuccess(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            ArrayList<Tool> toolList = new ArrayList<>();;
+            for(String s : temp.getReservedTools()){
+                toolList.add(toolRepo.findToolById(s));
+            }
+            model.addAttribute("reservedTools", toolList);
+        }
+        model.addAttribute("postSuccess", true);
         return "checkout";
     }
 

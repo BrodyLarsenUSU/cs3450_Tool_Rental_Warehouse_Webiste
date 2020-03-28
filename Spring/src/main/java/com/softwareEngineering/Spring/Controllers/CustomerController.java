@@ -1,5 +1,6 @@
 package com.softwareEngineering.Spring.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import com.softwareEngineering.Spring.Application;
 import com.softwareEngineering.Spring.Models.*;
+import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
 import com.softwareEngineering.Spring.Models.DTOs.toolDto;
@@ -91,5 +93,20 @@ public class CustomerController extends Application {
 		session.setAttribute("activeUser", temp);
 		customerRepository.save(temp);
 		return "redirect:/checkout";
+	}
+
+	@PostMapping("/customer/checkoutTools")
+	public String checkoutTools(Model model, HttpServletRequest request) {
+		HttpSession session =  request.getSession();
+		Customer cust = (Customer)session.getAttribute("activeUser");
+		ArrayList<String> toolList = cust.getReservedTools();
+		cust.addToolsToCheckedOut(toolList);
+		// System.out.println(toolList);
+		// for(String t : toolList){
+		// 	cust.addToolsToCheckedOut(t);
+		// }
+		session.setAttribute("activeUser", cust);
+		customerRepository.save(cust);
+		return "redirect:/checkout-success";
 	}
 }
