@@ -6,19 +6,8 @@
             <title>Tool WareHouse Tools</title>
         </head>
         <body>
-            <div th:if="${checkoutSuccess}">
-                <div class = "success-alert" id = "indexSuccessAlert" style = "display:none;">
-                    <p th:text="${alert_message}"></p>
-                </div>
-                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-                <script>
-                //When the page has loaded.
-                $( document ).ready(function(){
-                    $('#indexSuccessAlert').fadeIn('slow', function(){
-                       $('#indexSuccessAlert').delay(3000).fadeOut(); 
-                    });
-                });
-                </script>
+            <div class = "success-alert" id = "indexSuccessAlert" style = "display:none;">
+                <p> Tool Reserved </p>
             </div>
 
             <div class="header">
@@ -72,28 +61,37 @@
             <table align="center" id="toolTable">
             </table>
 
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script th:inline="javascript">
-                var list = /*[[${tools}]]*/;
+                var list = /*[[${tools}]]*/ "Test";
                 var table = document.getElementById("toolTable");
 
 
                 var resetButton = document.getElementById("resetButton");
                 resetButton.setAttribute("onclick", "initialize()");
+                resetButton.setAttribute("type", "submit");
+
 
                 var searchFor = document.getElementById("searchBar");
 
                 var searchButton = document.getElementById("searchGo");
                 searchButton.setAttribute("onclick", "search(searchFor.value)");
+                searchButton.setAttribute("type", "submit");
+
 
                 var filterBy = document.getElementById("filterBy");
 
                 var filterButton = document.getElementById("filterGo");
                 filterButton.setAttribute("onclick", "filterCategory(filterBy.value)");
+                filterButton.setAttribute("type", "submit");
+
 
                 var sortBy = document.getElementById("sortBy");
 
                 var sortButton = document.getElementById("sortGo");
                 sortButton.setAttribute("onclick", "sortWrapper(sortBy.value)");
+                sortButton.setAttribute("type", "submit");
+
 
 
                 initialize();
@@ -284,12 +282,30 @@
                     td6.setAttribute("class", "toolCell");
                     tableRow.appendChild(td6);
 
-                    <!--<td th:if="${signedIn}" class="toolCell">-->
-                        <!--<form th:action="@{/customer/reserveTool}" th:object="${toolDto}" method="POST">-->
-                            <!--<input type="hidden" th:name="id" th:value="${{tool.id}}">-->
-                            <!--<button type="submit" th.text="#{label.form.submit}">Checkout</button>-->
-                        <!--</form>-->
-                    <!--</td>-->
+                    if(/*[[${signedIn}]]*/ false){
+                        var td7 = document.createElement("td");
+                        td7.setAttribute("class", "toolCell");
+                        tableRow.appendChild(td7);
+
+                        var postButton = document.createElement("button");
+                        postButton.innerText = " Checkout ";
+                        postButton.setAttribute("type", "submit");
+                        postButton.onclick = function(){
+                            $.ajax({
+                                type: "POST",
+                                url: "/customer/reserveTool",
+                                data: { id: tool.id }
+                            });
+                            postSuccess();
+                        };
+                        td7.appendChild(postButton);
+                    }
+                }
+
+                function postSuccess(){
+                    $('#indexSuccessAlert').fadeIn('slow', function(){
+                       $('#indexSuccessAlert').delay(3000).fadeOut(); 
+                    });
                 }
             </script>
 
