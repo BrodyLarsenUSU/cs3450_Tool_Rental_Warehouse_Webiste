@@ -97,26 +97,32 @@
 
                     var td1 = document.createElement("td");
                     td1.innerHTML = tool.category;
+                    td1.setAttribute("class", "toolCell");
                     tableRow.appendChild(td1);
 
                     var td2 = document.createElement("td");
                     td2.innerHTML = tool.name;
+                    td2.setAttribute("class", "toolCell");
                     tableRow.appendChild(td2);
 
                     var td3 = document.createElement("td");
                     td3.innerHTML = tool.value;
+                    td3.setAttribute("class", "toolCell");
                     tableRow.appendChild(td3);
 
                     var td4 = document.createElement("td");
                     td4.innerHTML = tool.quantity;
+                    td4.setAttribute("class", "toolCell");
                     tableRow.appendChild(td4);
 
                     var td5 = document.createElement("td");
                     td5.innerHTML = tool.onHand;
+                    td5.setAttribute("class", "toolCell");
                     tableRow.appendChild(td5);
 
                     var td6 = document.createElement("td");
                     td6.innerHTML = tool.checkedOut;
+                    td6.setAttribute("class", "toolCell");
                     tableRow.appendChild(td6);
 
                     <!--<td th:if="${signedIn}" class="toolCell">-->
