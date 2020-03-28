@@ -57,6 +57,10 @@ public class Customer{
 			System.out.println("Removing " + id + " from Reserve");
 		}
 
+		public void removeToolCheckout(String id){
+			checkedOutTools.remove(id);
+		}
+
 
 
 

@@ -14,6 +14,8 @@ import com.softwareEngineering.Spring.Models.*;
 import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+import com.softwareEngineering.Spring.Models.DTOs.lookupDto;
+import com.softwareEngineering.Spring.Models.DTOs.removeToolDto;
 import com.softwareEngineering.Spring.Models.DTOs.toolDto;
 import com.softwareEngineering.Spring.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,5 +112,27 @@ public class CustomerController extends Application {
 		session.setAttribute("activeUser", cust);
 		customerRepository.save(cust);
 		return "redirect:/checkout-success";
+	}
+
+	@PostMapping("/customer/lookup")
+	public String lookupCustomer(@ModelAttribute("lookupDto") lookupDto lookupDto, Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Customer temp = customerRepository.findCustomerById(lookupDto.getId());
+		session.setAttribute("lookupDto", temp);
+		return "redirect:/employeePortal-customer-search";
+	}
+
+	@PostMapping("/customer/removeCheckout")
+	public String removeCheckout(@ModelAttribute("removeToolDto") removeToolDto removeToolDto, Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Customer cust = customerRepository.findCustomerById(removeToolDto.getUserId());
+		cust.removeToolCheckout(removeToolDto.getToolId());
+		Tool temp = toolRepo.findToolById(removeToolDto.getToolId());
+		temp.setCheckedOut(temp.getCheckedOut() - 1);
+		temp.setOnHand(temp.getOnHand() + 1);
+		toolRepo.save(temp);
+		customerRepository.save(cust);
+		session.setAttribute("lookupDto", cust);
+		return "redirect:/employeePortal-customer-search";
 	}
 }

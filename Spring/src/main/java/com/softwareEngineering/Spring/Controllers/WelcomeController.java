@@ -6,6 +6,8 @@ import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
+import com.softwareEngineering.Spring.Models.DTOs.lookupDto;
+import com.softwareEngineering.Spring.Models.DTOs.removeToolDto;
 import com.softwareEngineering.Spring.Models.DTOs.toolDto;
 import com.softwareEngineering.Spring.Models.*;
 
@@ -233,5 +235,36 @@ public class WelcomeController extends Application {
         customerDto custDto = new customerDto();
 		model.addAttribute("customer", custDto);
         return "signUp";
+    }
+
+    @RequestMapping("/employeePortal")
+    public String getEPortal(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("lookupDto", null);
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        model.addAttribute("lookupDto", new lookupDto());
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        model.addAttribute("removeToolDto", new removeToolDto());
+        return "employeePortal";
+    }
+
+    @RequestMapping("/employeePortal-customer-search")
+    public String getCustSearch(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        Customer look = (Customer)session.getAttribute("lookupDto");
+        ArrayList<String> userTools = look.getCheckedOutTools();
+        ArrayList<Tool> sendTools = new ArrayList<>();
+        for(String t : userTools){
+            Tool tempTool = toolRepo.findToolById(t);
+            sendTools.add(tempTool);
+        }
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        model.addAttribute("customer", look);
+        model.addAttribute("lookupDto", new lookupDto());
+        model.addAttribute("found", true);
+        model.addAttribute("tools", sendTools);
+        model.addAttribute("removeToolDto", new removeToolDto());
+        return "employeePortal";
     }
 }
