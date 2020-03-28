@@ -37,6 +37,38 @@
                 </ul>
             </header>
 
+            <div class="pageMethods">
+                <div>
+                    <button type="button" id="resetButton"> Reset Display </button>
+                </div>
+                <div>
+                    <input type="text" id="searchBar">
+                    <button type="button" id="searchGo"> Search</button>
+                </div>
+                <div>
+                    <select id="filterBy">
+                        <option value="InStock">In Stock</option>
+                        <option value="Bike Tools">Bike Tools</option>
+                        <option value="Carpentry & Woodworking">Carpentry & Woodworking</option>
+                        <option value="Carpet Tools">Carpet Tools</option>
+                        <option value="Cement Tools">Cement Tools</option>
+                        <option value="Drywall & Masonry">Drywall & Masonry</option>
+                        <option value="Electrical & Mechanical">Electrical & Mechanical</option>
+                        <option value="Garden Tools">Garden Tools</option>
+                        <option value="Kitchen Tools">Kitchen Tools</option>
+                        <option value="Other Tools">Other Tools</option>
+                        <option value="Power Tools">Power Tools</option>
+                    </select>
+                    <button type="button" id="filterGo">Filter</button>
+                </div>
+                    <select id="sortBy">
+                        <option value="alpha"> Alphabetically </option>
+                        <option value="quantity"> Quantity in Stock </option>
+                    </select>
+                    <button type="button" id="sortGo">Sort</button>
+                </div>
+            </div>
+
             <table align="center" id="toolTable">
             </table>
 
@@ -44,7 +76,28 @@
                 var list = /*[[${tools}]]*/;
                 var table = document.getElementById("toolTable");
 
+
+                var resetButton = document.getElementById("resetButton");
+                resetButton.setAttribute("onclick", "initialize()");
+
+                var searchFor = document.getElementById("searchBar");
+
+                var searchButton = document.getElementById("searchGo");
+                searchButton.setAttribute("onclick", "search(searchFor.value)");
+
+                var filterBy = document.getElementById("filterBy");
+
+                var filterButton = document.getElementById("filterGo");
+                filterButton.setAttribute("onclick", "filterCategory(filterBy.value)");
+
+                var sortBy = document.getElementById("sortBy");
+
+                var sortButton = document.getElementById("sortGo");
+                sortButton.setAttribute("onclick", "sortWrapper(sortBy.value)");
+
+
                 initialize();
+
 
                 function initialize(){
                     wipe();
@@ -54,22 +107,31 @@
                     }
                 }
 
-                function filterCategory(category){
-                    var filteredList = [];
-                    for(var i in list){
-                        var curTool = list[i];
-                        if(curTool.category.localeCompare(category)==0){
-                            filteredList.push(curTool);
-                        }
-                    }
+                function sortWrapper(sortType){
 
-                    if(filteredList.length==0){
-                        alert("For some reason, no tools had the category " + category)
+                }
+
+                function filterCategory(category){
+                    if(category.localeCompare("InStock")==0){
+                        filterInStock();
                     }
                     else{
-                        wipe();
-                        for(var i in filteredList){
-                            addTool(filteredList[i]);
+                        var filteredList = [];
+                        for(var i in list){
+                            var curTool = list[i];
+                            if(curTool.category.localeCompare(category)==0){
+                                filteredList.push(curTool);
+                            }
+                        }
+
+                        if(filteredList.length==0){
+                            alert("For some reason, no tools had the category " + category)
+                        }
+                        else{
+                            wipe();
+                            for(var i in filteredList){
+                                addTool(filteredList[i]);
+                            }
                         }
                     }
                 }
