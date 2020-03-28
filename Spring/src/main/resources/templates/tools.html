@@ -54,6 +54,28 @@
                     }
                 }
 
+                function filterCategory(category){
+
+
+                    var filteredList = [];
+                    for(var i in list){
+                        var curTool = list[i];
+                        if(curTool.category.localeCompare(category)==0){
+                            filteredList.push(curTool);
+                        }
+                    }
+
+                    if(filteredList.length==0){
+                        alert("For some reason, no tools had the category " + category)
+                    }
+                    else{
+                        wipe();
+                        for(var i in filteredList){
+                            addTool(filteredList[i]);
+                        }
+                    }
+                }
+
                 function wipe(){
                     var nextToDelete = table.lastElementChild;
                     while(nextToDelete){
