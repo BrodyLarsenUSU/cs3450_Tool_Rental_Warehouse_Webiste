@@ -50,7 +50,7 @@
                 </div>
                     <select id="sortBy">
                         <option value="alpha"> Alphabetically </option>
-                        <option value="quantity"> Quantity in Stock </option>
+                        <option value="quantity"> Quantity on Hand </option>
                     </select>
                     <button type="button" id="sortGo">Sort</button>
                 </div>
@@ -122,26 +122,36 @@
                 }
 
                 function sort(sortType){
-                    wipe();
-                    
-                    var sortedList = list;
-                    for(var j=0; j<sortedList.length(); j++){
-                        var minTool = j
+                    var list1 = list.slice();
 
-                        for(var i= minTool+1; i<sortedList.length(); i++ ){
-                            if(sortedList[minTool].onHand < sortedList[i]){
-                                minTool = i;
+                    var sortedList=[];
+                    for(var i in list1){
+                        min = i;
+
+                        for(var j=i; j<list1.length; j++){
+                            if(sortType==2){
+                                if( list1[min].name.localeCompare(list1[j].name) > 0){
+                                    min = j;
+                                }
+                            }
+                            else if(sortType==1){
+                                if( list1[min].onHand < list1[j].onHand){
+                                    min = j;
+                                }
+                            }
+                            else{
+                                console.log("no sorting is occurring")
                             }
                         }
 
-                        if(j != minTool){
-                            var temp = sortedList[j];
+                        var temp = list1[i];
+                        list1[i] = list1[min];
+                        list1[min] = temp;
 
-                            sortedList[j] = sortedList[minTool];
-                            sortedList[minTool] = temp;
-                        }
+                        sortedList.push(list1[i]);
                     }
-
+                    wipe();
+                    console.log(sortedList);
                     for(var k in sortedList){
                         addTool(sortedList[k]);
                     }
