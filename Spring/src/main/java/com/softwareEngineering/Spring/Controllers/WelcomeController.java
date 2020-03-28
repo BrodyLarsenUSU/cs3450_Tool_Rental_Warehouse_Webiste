@@ -60,18 +60,26 @@ public class WelcomeController extends Application {
     @RequestMapping("/index-add-success")
     public String getIndexAddSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("addedSuccess", true);
         model.addAttribute("alert_message", "Successfully Created Account");
-        model.addAttribute("name", ((Customer) session.getAttribute("activeUser")).getFirstName() + " " + ((Customer) session.getAttribute("activeUser")).getLastName());
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        if(temp.isEmployee()){
+            model.addAttribute("employee", true);
+        }
         return "index";
     }
 
     @RequestMapping("/index-login-success")
     public String getIndexLoginSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("addedSuccess", true);
         model.addAttribute("alert_message", "Successfully Logged In");
-        model.addAttribute("name", ((Customer) session.getAttribute("activeUser")).getFirstName() + " " + ((Customer) session.getAttribute("activeUser")).getLastName());
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        if(temp.isEmployee()){
+            model.addAttribute("employee", true);
+        }
         return "index";
     }
 
