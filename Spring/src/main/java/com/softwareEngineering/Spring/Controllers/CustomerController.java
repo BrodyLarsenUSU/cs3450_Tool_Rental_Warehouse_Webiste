@@ -121,3 +121,18 @@ public class CustomerController extends Application {
 		session.setAttribute("lookupDto", temp);
 		return "redirect:/employeePortal-customer-search";
 	}
+
+	@PostMapping("/customer/removeCheckout")
+	public String removeCheckout(@ModelAttribute("removeToolDto") removeToolDto removeToolDto, Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Customer cust = customerRepository.findCustomerById(removeToolDto.getUserId());
+		cust.removeToolCheckout(removeToolDto.getToolId());
+		Tool temp = toolRepo.findToolById(removeToolDto.getToolId());
+		temp.setCheckedOut(temp.getCheckedOut() - 1);
+		temp.setOnHand(temp.getOnHand() + 1);
+		toolRepo.save(temp);
+		customerRepository.save(cust);
+		session.setAttribute("lookupDto", cust);
+		return "redirect:/employeePortal-customer-search";
+	}
+}
