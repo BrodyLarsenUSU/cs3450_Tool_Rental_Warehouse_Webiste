@@ -78,10 +78,10 @@ public class CustomerController extends Application {
 	}
 
 	@PostMapping("/customer/reserveTool")
-	public String reserveTool(@ModelAttribute("toolDto") toolDto toolDto, Model model, HttpServletRequest request){
+	public String reserveTool(@RequestParam("id") String id, Model model, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Customer temp = (Customer)session.getAttribute("activeUser");
-		temp.addToolToReserve(toolDto.getId());
+		temp.addToolToReserve(id);
 		session.setAttribute("activeUser", temp);
 		customerRepository.save(temp);
 		return "redirect:/tools-success";
