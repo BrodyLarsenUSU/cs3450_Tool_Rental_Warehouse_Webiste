@@ -108,7 +108,44 @@
                 }
 
                 function sortWrapper(sortType){
+                    var passIn = 0;
+                    if(sortType.localeCompare("alpha")){
+                        passIn = 1;
+                        sort(passIn);
+                    }
+                    else if(sortType.localeCompare("quantity")){
+                        passIn = 2;
+                        sort(passIn);
+                    }
+                    else{
+                        console.log("Unknown sort type");
+                    }
+                }
 
+                function sort(sortType){
+                    wipe();
+                    
+                    var sortedList = list;
+                    for(var j=0; j<sortedList.length(); j++){
+                        var minTool = j
+
+                        for(var i= minTool+1; i<sortedList.length(); i++ ){
+                            if(sortedList[minTool].onHand < sortedList[i]){
+                                minTool = i;
+                            }
+                        }
+
+                        if(j != minTool){
+                            var temp = sortedList[j];
+
+                            sortedList[j] = sortedList[minTool];
+                            sortedList[minTool] = temp;
+                        }
+                    }
+
+                    for(var k in sortedList){
+                        addTool(sortedList[k]);
+                    }
                 }
 
                 function filterCategory(category){
