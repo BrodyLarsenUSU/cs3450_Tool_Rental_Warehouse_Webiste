@@ -55,8 +55,6 @@
                 }
 
                 function filterCategory(category){
-
-
                     var filteredList = [];
                     for(var i in list){
                         var curTool = list[i];
@@ -72,6 +70,46 @@
                         wipe();
                         for(var i in filteredList){
                             addTool(filteredList[i]);
+                        }
+                    }
+                }
+
+                function filterInStock(){
+                    var filteredList = [];
+                    for(var i in list){
+                        var curTool = list[i];
+                        if(curTool.onHand > 0){
+                            filteredList.push(curTool);
+                        }
+                    }
+
+                    if(filteredList.length==0){
+                        alert("No tools are in stock?!?!")
+                    }
+                    else{
+                        wipe();
+                        for(var i in filteredList){
+                            addTool(filteredList[i]);
+                        }
+                    }
+                }
+
+                function search(toolName){
+                    var searchedList = [];
+                    for(var i in list){
+                        var curTool = list[i];
+                        if(curTool.name.toLowerCase().includes(toolName.toLowerCase())){
+                            searchedList.push(curTool);
+                        }
+                    }
+
+                    if(searchedList.length==0){
+                        alert("No tools found containing " + toolName);
+                    }
+                    else{
+                        wipe();
+                        for(var i in searchedList){
+                            addTool(searchedList[i]);
                         }
                     }
                 }
