@@ -23,11 +23,11 @@
     </div>
     <div class="header">
         <h1> MAIN PAGE </h1>
-        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
+        <img align="center" src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">
         <div th:if="${employee}" style="float: right;">
             <a href="/employeePortal">Employee Portal</a>
         </div>
-        <p th:if="${addedSuccess}" style="float: right;" th:text="${'Welcome ' + name}"></p>
+        <p th:if="${signedIn}" style="float: right;" th:text="${'Welcome ' + name}"></p>
     </div>
     
     <header class ="testNavBar">

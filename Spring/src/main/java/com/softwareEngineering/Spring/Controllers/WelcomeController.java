@@ -54,8 +54,16 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/index")
-    public String getIndex(){
-        // model.addAttribute("addedSuccess", false);
+    public String getIndex(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
+        }
         return "index";
     }
 
@@ -64,6 +72,7 @@ public class WelcomeController extends Application {
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("addedSuccess", true);
+        model.addAttribute("signedIn", true);
         model.addAttribute("alert_message", "Successfully Created Account");
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
         if(temp.isEmployee()){
@@ -77,6 +86,7 @@ public class WelcomeController extends Application {
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("addedSuccess", true);
+        model.addAttribute("signedIn", true);
         model.addAttribute("alert_message", "Successfully Logged In");
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
         if(temp.isEmployee()){
