@@ -45,6 +45,9 @@
             <button type="submit" th.text="#{label.form.submit}">Search</button> <input type="reset" value="Reset" /> <br />
         </form>
     </div>
+    <div th:if="${error}">
+        <p style="color: red;">Can't Find User. Please Try Again</p>
+    </div>
     <div th:if="${found}">
         <table align="center">
             <tr>

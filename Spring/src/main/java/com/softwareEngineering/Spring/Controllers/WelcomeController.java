@@ -19,6 +19,7 @@ import javax.activation.*;
 import com.softwareEngineering.Spring.Application;
 import com.softwareEngineering.Spring.Models.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -255,6 +256,18 @@ public class WelcomeController extends Application {
         model.addAttribute("lookupDto", new lookupDto());
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
         model.addAttribute("removeToolDto", new removeToolDto());
+        return "employeePortal";
+    }
+
+    @RequestMapping("/employeePortal-search-error")
+    public String getEPortalError(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("lookupDto", null);
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        model.addAttribute("lookupDto", new lookupDto());
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        model.addAttribute("removeToolDto", new removeToolDto());
+        model.addAttribute("error", true);
         return "employeePortal";
     }
 

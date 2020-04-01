@@ -118,6 +118,9 @@ public class CustomerController extends Application {
 	public String lookupCustomer(@ModelAttribute("lookupDto") lookupDto lookupDto, Model model, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Customer temp = customerRepository.findCustomerById(lookupDto.getId());
+		if(temp == null){
+			return "redirect:/employeePortal-search-error";
+		}
 		session.setAttribute("lookupDto", temp);
 		return "redirect:/employeePortal-customer-search";
 	}
