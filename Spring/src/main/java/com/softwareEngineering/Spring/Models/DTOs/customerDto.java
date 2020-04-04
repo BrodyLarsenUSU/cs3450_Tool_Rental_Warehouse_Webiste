@@ -61,6 +61,9 @@ public class customerDto{
 	}
 
 	public void setAge(int age) {
+		if(age < 18){
+			this.age = 0;
+		}
 		this.age = age;
 	}
 

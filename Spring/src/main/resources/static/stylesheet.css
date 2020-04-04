@@ -80,7 +80,12 @@ p{
 	display: inline-block;
 	background-color: DarkBlue;
 	color: white;
+}
 
+.failed-alert{
+	display: inline-block;
+	background-color: Red;
+	color: white;
 }
 
 .hidden{

@@ -82,6 +82,16 @@ public class WelcomeController extends Application {
         return "index";
     }
 
+    @RequestMapping("/index-add-fail")
+    public String getIndexAddFail(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        model.addAttribute("addedFailed", true);
+        model.addAttribute("alert_message", "Failed to create account: Users must be 18 or older.");
+        return "index";
+    }
+    
+
     @RequestMapping("/index-login-success")
     public String getIndexLoginSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();

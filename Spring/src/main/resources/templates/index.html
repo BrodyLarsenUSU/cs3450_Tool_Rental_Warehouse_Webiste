@@ -21,6 +21,21 @@
         });
         </script>
     </div>
+    <div th:if="${addedFailed}">
+        <div class = "failed-alert" id = "indexFailedAlert" style = "display:none;">
+            <p th:text="${alert_message}"></p>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+        //When the page has loaded.
+        $( document ).ready(function(){
+            $('#indexFailedAlert').fadeIn('slow', function(){
+               $('#indexFailedAlert').delay(3000).fadeOut(); 
+            });
+        });
+        </script>
+    </div>
+    
     <!--the next two lines needs to be placed together -->
     <h4 class="hidden" th:if="${signedIn}" align="left" style="float: left;" color=#d9d9d9 th:text="${'Welcome ' + name}"></h4>
     <h4  th:if="${signedIn}" align="right" style="float: right;" th:text="${'Welcome ' + name}"></h4>
@@ -48,6 +63,8 @@
         </ul>
     </header>
 
+    <h3>Welcome to The Warehouse Rentals and Suppleis</h3>
+
     <img class="slide" src="drill-444499_1920.jpg">
     <img class="slide" src="tools-864983_1920.jpg">
     <img class="slide" src="tools-1209764_1920.jpg">
@@ -59,9 +76,15 @@
         <img class="slide" src="tools-1209764_1920.jpg">
     </div>
     
-    <script type="text/javascript" src="carousal.js"></script>
+    
 
-	<p> This is the home page. Home page stuff goes here. <br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id eleifend magna, eu vehicula nisl. Praesent pharetra risus ut turpis tristique sagittis ut eu est. Vestibulum diam dui, gravida eu erat ut, dictum semper ante. Pellentesque in risus magna. Nam nec magna non enim fringilla pretium semper in ante. Nullam turpis ante, viverra vitae commodo in, mollis a erat. Mauris fringilla consectetur magna nec ullamcorper. Maecenas efficitur vel arcu non molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras elementum molestie purus quis ornare. In at dignissim est. Proin id condimentum odio. Etiam lobortis neque sed elit molestie iaculis vitae id ante. Nunc lacinia non ante ut vehicula.</p>
+    <script type="text/javascript" src="carousal.js"></script>
+  
+    <h4>Our Mission:</h4>
+    <p>
+        You need tools? We have them! With a wide variety of tools from house work to bike repairs. Simply sign in or create an account to check out tools.
+    </p>
+    <p>Users must be 18 or older in order to check out tools.</p>
 
         <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
         <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">

@@ -19,6 +19,7 @@ import com.softwareEngineering.Spring.Models.DTOs.removeToolDto;
 import com.softwareEngineering.Spring.Models.DTOs.toolDto;
 import com.softwareEngineering.Spring.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,16 +46,22 @@ public class CustomerController extends Application {
 	@PostMapping("/customer")
 	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto, HttpServletRequest request, Model model){
 		Customer registered = new Customer();
-		registered.setFirstName(customerDto.getFirstName());
-		registered.setLastName(customerDto.getLastName());
-		registered.setAge(customerDto.getAge());
-		registered.setGender(customerDto.getGender());
-		registered.setPassword(customerDto.getPassword());
-		registered.setUsername(customerDto.getUsername());
-		customerRepository.save(registered);
 		HttpSession session = request.getSession();
-		session.setAttribute("activeUser", registered);
-		return "redirect:/index-add-success";
+		if(customerDto.getAge() >= 18){
+			registered.setFirstName(customerDto.getFirstName());
+			registered.setLastName(customerDto.getLastName());
+			registered.setAge(customerDto.getAge());
+			registered.setGender(customerDto.getGender());
+			registered.setPassword(customerDto.getPassword());
+			registered.setUsername(customerDto.getUsername());
+			customerRepository.save(registered);
+			session.setAttribute("activeUser", registered);
+			return "redirect:/index-add-success";
+		}
+		else{
+			session.setAttribute("activeUser", registered);
+			return "redirect:/index-add-fail";
+		}
 	}
 
 	@PostMapping("/customer/signin")
