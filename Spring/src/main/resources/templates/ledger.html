@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" th:href="@{/stylesheet.css}" type="text/css"/>
+        <title>Tool WareHouse Ledger</title>
+    </head>
+
+    <body>
+
+    <div class="header">
+        <h1> Ledger </h1>
+        <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">f
+        <p th:if="${addedSuccess}" style="float: right;" th:text="${'Welcome ' + name}"></p>
+    </div>
+    
+    <header class ="testNavBar">
+        <ul>
+            <li><a href="/signin">Sign In</a></li>
+            <li><a href="/signup">Sign up</a></li>
+            <li><a href="/tools">Tools</a></li>
+            <li><a class="active" href="/index">Home</a></li>
+            <li><a href="/checkout">Checkout</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/employeePortal">Employee Portal</a></li>
+            <li><a href="/ledger">Ledger</a></li>
+            <li style="float:right"><a href="/contactus">Contact Us</a></li>
+        </ul>
+    </header>
+
+    
+    
+    <p class="rightsReserved">All Rights Reserved. Group Name Inc.</p>
+    <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:75px;height:25px">
+        
+    </body>
+</html>
