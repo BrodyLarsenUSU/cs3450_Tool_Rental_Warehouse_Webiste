@@ -43,10 +43,6 @@
     <div class="header">
         <h1> MAIN PAGE </h1>
         <img align="center" src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px"></img>
-        <p></p>
-        <div th:if="${employee}" style="float: right;">
-            <a href="/employeePortal">Employee Portal</a>
-        </div>
     </div>
 
    
@@ -59,6 +55,8 @@
             <li><a class="active" href="/index">Home</a></li>
             <li><a href="/checkout">Checkout</a></li>
             <li><a href="/projects">Projects</a></li>
+            <li th:if="${employee}"><a href="/employeePortal">Employee Portal</a></li>
+            <li th:if="${employee}"><a href="/ledger">Ledger</a></li>
             <li style="float:right"><a href="/contactus">Contact Us</a></li>
         </ul>
     </header>
