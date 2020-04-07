@@ -1,7 +1,5 @@
 package com.softwareEngineering.Spring;
 
-import com.softwareEngineering.Spring.Models.Customer;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
