@@ -2,6 +2,7 @@ package com.softwareEngineering.Spring.Controllers;
 
 import com.softwareEngineering.Spring.Repositories.ToolRepository;
 import com.softwareEngineering.Spring.Repositories.CustomerRepository;
+import com.softwareEngineering.Spring.Repositories.LedgerRepository;
 import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
@@ -47,7 +48,9 @@ public class WelcomeController extends Application {
     @Autowired
     private ToolRepository toolRepo;
 	@Autowired
-	private CustomerRepository customerRepo;
+    private CustomerRepository customerRepo;
+    @Autowired
+    private LedgerRepository ledgeRepo;
 
 	@RequestMapping("/")
     public String getStarterIndex(){
@@ -302,7 +305,13 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/ledger")
-    public String getLedger(Model model){
+    public String getLedger(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(!temp.isActive()){
+            return "redirect:/signin";
+        }
+        model.addAttribute("ledger", ledgeRepo.findAll());
         return "ledger";
     }
 }
