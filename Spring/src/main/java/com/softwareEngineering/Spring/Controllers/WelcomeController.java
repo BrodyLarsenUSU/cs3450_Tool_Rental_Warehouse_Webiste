@@ -300,4 +300,9 @@ public class WelcomeController extends Application {
         model.addAttribute("removeToolDto", new removeToolDto());
         return "employeePortal";
     }
+
+    @RequestMapping("/ledger")
+    public String getLedger(Model model){
+        return "ledger";
+    }
 }
