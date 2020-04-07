@@ -37,6 +37,8 @@ public class CustomerController extends Application {
 	private CustomerRepository customerRepository;
 	@Autowired
 	private ToolRepository toolRepo;
+	@Autowired
+	private LedgerRepository ledgeRepo;
 
 	@GetMapping("/customer")
 	public String getDB(Model model) {
@@ -114,6 +116,7 @@ public class CustomerController extends Application {
 			temp.setCheckedOut(temp.getCheckedOut() + 1);
 			temp.setOnHand(temp.getOnHand() - 1);
 			toolRepo.save(temp);
+			ledgeRepo.save(new ledgerItem(cust, toolRepo.findToolById(t)));
 		}
 		cust.addToolsToCheckedOut(toolList);
 		session.setAttribute("activeUser", cust);
