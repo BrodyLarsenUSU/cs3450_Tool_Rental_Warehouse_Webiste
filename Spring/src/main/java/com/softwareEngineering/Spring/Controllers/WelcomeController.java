@@ -6,6 +6,8 @@ import com.softwareEngineering.Spring.Repositories.LedgerRepository;
 import com.softwareEngineering.Spring.Models.DTOs.ContactUsDto;
 import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
 import com.softwareEngineering.Spring.Models.DTOs.customerDto;
+import com.softwareEngineering.Spring.Models.DTOs.ledgerDto;
+import com.softwareEngineering.Spring.Models.DTOs.ledgerItemDto;
 import com.softwareEngineering.Spring.Models.DTOs.loginDto;
 import com.softwareEngineering.Spring.Models.DTOs.lookupDto;
 import com.softwareEngineering.Spring.Models.DTOs.removeToolDto;
@@ -18,7 +20,7 @@ import javax.mail.internet.*;
 import javax.activation.*;
 
 import com.softwareEngineering.Spring.Application;
-import com.softwareEngineering.Spring.Models.Tool;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.Mod;
 import org.springframework.stereotype.Controller;
@@ -308,10 +310,12 @@ public class WelcomeController extends Application {
     public String getLedger(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
-        if(!temp.isActive()){
+        if(temp == null || !temp.isEmployee()){
             return "redirect:/signin";
         }
         model.addAttribute("ledger", ledgeRepo.findAll());
+        model.addAttribute("ledgerDto", new ledgerDto());
+        model.addAttribute("ledgerItem", new ledgerItemDto());
         return "ledger";
     }
 }
