@@ -147,4 +147,11 @@ public class CustomerController extends Application {
 		session.setAttribute("lookupDto", cust);
 		return "redirect:/employeePortal-customer-search";
 	}
+
+	@PostMapping("/customer/makeEmployee")
+	public void makeEmployee(@RequestParam("id") String id, Model model, HttpServletRequest request){
+		Customer cust = customerRepository.findCustomerById(id);
+		cust.setEmployee(true);
+		customerRepository.save(cust);
+	}
 }
