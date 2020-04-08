@@ -69,6 +69,9 @@
 
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script th:inline="javascript">
+
+                <!--This pulls the needed data to set onclick methods for the buttons to allow sorting filtering and searching-->
+
                 var list = /*[[${tools}]]*/ "Test";
                 var table = document.getElementById("toolTable");
 
@@ -102,15 +105,17 @@
 
                 initialize();
 
-
+                <!--displays the normal unfiltered, unsorted list-->
                 function initialize(){
+                    <!--wipes the screen-->
                     wipe();
-
+                    <!--displays the normal display-->
                     for(var i in list){
                         addTool(list[i]);
                     }
                 }
 
+                <!--a wrapper for the sort method-->
                 function sortWrapper(sortType){
                     var passIn = 0;
                     if(sortType.localeCompare("alpha")){
@@ -126,24 +131,29 @@
                     }
                 }
 
+                <!--sorts using a comparator based on the provided sort method-->
                 function sort(sortType){
+                    <!--makes a copy of all the tools, so the original isnt messed up-->
                     var list1 = list.slice();
 
+                    <!--The sorting method used-->
                     var sortedList=[];
                     for(var i in list1){
                         min = i;
-
                         for(var j=i; j<list1.length; j++){
+                            <!--IF the sort type is name, compares by name-->
                             if(sortType==2){
                                 if( list1[min].name.localeCompare(list1[j].name) > 0){
                                     min = j;
                                 }
                             }
+                            <!--IF the sort type is onhand, compares by number onhand-->
                             else if(sortType==1){
                                 if( list1[min].onHand < list1[j].onHand){
                                     min = j;
                                 }
                             }
+                            <!--Logs an error if the sort type wasnt one of the above types-->
                             else{
                                 console.log("no sorting is occurring")
                             }
@@ -155,14 +165,16 @@
 
                         sortedList.push(list1[i]);
                     }
+                    <!--wipes, and pushes the sorted list to the screen-->
                     wipe();
-                    console.log(sortedList);
                     for(var k in sortedList){
                         addTool(sortedList[k]);
                     }
                 }
 
+                <!--filters and displays only tool of category "categtory"-->
                 function filterCategory(category){
+                    <!--creates a temp list to hold all results found by looking through every tool in the original list-->
                     if(category.localeCompare("InStock")==0){
                         filterInStock();
                     }
@@ -175,10 +187,12 @@
                             }
                         }
 
+                        <!--makes sure the result list was not empty, if it was alerts that no tools matched what was searched-->
                         if(filteredList.length==0){
                             alert("For some reason, no tools had the category " + category)
                         }
                         else{
+                            <!--if there are tools in the temp list, clears the screen then displays only the temp list-->
                             wipe();
                             for(var i in filteredList){
                                 addTool(filteredList[i]);
@@ -187,7 +201,10 @@
                     }
                 }
 
+
+                <!--filters and displays only in stock tools-->
                 function filterInStock(){
+                    <!--creates a temp list to hold all results found by looking through every tool in the original list-->
                     var filteredList = [];
                     for(var i in list){
                         var curTool = list[i];
@@ -196,10 +213,12 @@
                         }
                     }
 
+                    <!--makes sure the result list was not empty, if it was alerts that no tools matched what was searched-->
                     if(filteredList.length==0){
                         alert("No tools are in stock?!?!")
                     }
                     else{
+                        <!--if there are tools in the temp list, clears the screen then displays only the temp list-->
                         wipe();
                         for(var i in filteredList){
                             addTool(filteredList[i]);
@@ -207,7 +226,9 @@
                     }
                 }
 
+                <!--Essentially this filters and displays only tools with "toolName" in their name-->
                 function search(toolName){
+                    <!--creates a temp list to hold all results found by looking through every tool in the original list-->
                     var searchedList = [];
                     for(var i in list){
                         var curTool = list[i];
@@ -216,10 +237,12 @@
                         }
                     }
 
+                    <!--makes sure the result list was not empty, if it was alerts that no tools matched what was searched-->
                     if(searchedList.length==0){
                         alert("No tools found containing " + toolName);
                     }
                     else{
+                        <!--if there are tools in the temp list, clears the screen then displays only the temp list-->
                         wipe();
                         for(var i in searchedList){
                             addTool(searchedList[i]);
@@ -227,13 +250,16 @@
                     }
                 }
 
+                <!--This function wipes all the children of the table, and puts back the labels-->
                 function wipe(){
                     var nextToDelete = table.lastElementChild;
+                    <!--The loop that actually removes all of the tables children-->
                     while(nextToDelete){
                         nextToDelete.remove();
                         nextToDelete = table.lastElementChild;
                     }
 
+                    <!--This puts the header/column labels back in the table-->
                     var tableRow = document.createElement("tr");
                     table.appendChild(tableRow);
 
@@ -262,8 +288,9 @@
                     tableRow.appendChild(td6);
                 }
 
+                <!--This function adds the given tool to the table-->
                 function addTool(tool){
-
+                    <!--Assembles the pieces and places them on the table row-->
                     var tableRow = document.createElement("tr");
                     tableRow.setAttribute("class", "toolCell");
                     table.appendChild(tableRow);
@@ -298,6 +325,7 @@
                     td6.setAttribute("class", "toolCell");
                     tableRow.appendChild(td6);
 
+                    <!--This part handles the checkout button for the tool, does not display unless signed in-->
                     if(/*[[${signedIn}]]*/ false){
                         var td7 = document.createElement("td");
                         td7.setAttribute("class", "toolCell");
@@ -318,6 +346,7 @@
                     }
                 }
 
+                <!--Used by the checkout button if there was a successful checkout-->
                 function postSuccess(){
                     $('#indexSuccessAlert').fadeIn('slow', function(){
                        $('#indexSuccessAlert').delay(3000).fadeOut(); 
