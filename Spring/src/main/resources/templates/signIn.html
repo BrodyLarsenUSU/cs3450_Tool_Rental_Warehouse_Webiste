@@ -40,8 +40,8 @@
                 <p th:text="${error_message}"></p>
             </div>
             <form action = "/customer/signin" th:action="@{/customer/signin}" th:object="${loginUser}" method="POST">
-                <input type="text" th:field="*{username}" placeholder="Username"/> <br/>
-                <input type="password" th:field="*{password}" placeholder="Password"/> <br/>
+                <input type="text" th:field="*{username}" placeholder="Username" required/> <br/>
+                <input type="password" th:field="*{password}" placeholder="Password" required/> <br/>
                 <button type="submit" th.text="#{label.form.submit}">Log In</button> <input type="reset" value="Reset" /> <br />
             </form>
         </div>
