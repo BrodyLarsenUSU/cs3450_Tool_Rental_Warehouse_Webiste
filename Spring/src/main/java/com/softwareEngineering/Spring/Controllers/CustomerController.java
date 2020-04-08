@@ -110,14 +110,16 @@ public class CustomerController extends Application {
 		HttpSession session =  request.getSession();
 		Customer cust = (Customer)session.getAttribute("activeUser");
 		ArrayList<String> toolList = cust.getReservedTools();
+		ArrayList<Tool> tools = new ArrayList<>();
 		for(String t : toolList){
 			Tool temp = toolRepo.findToolById(t);
+			tools.add(temp);
 			temp.setCheckedOut(temp.getCheckedOut() + 1);
 			temp.setOnHand(temp.getOnHand() - 1);
 			toolRepo.save(temp);
 			ledgeRepo.save(new ledgerItem(cust, toolRepo.findToolById(t)));
 		}
-		cust.addToolsToCheckedOut(toolList);
+		cust.addToolsToCheckedOut(toolList, tools);
 		session.setAttribute("activeUser", cust);
 		customerRepository.save(cust);
 		return "redirect:/checkout-success";

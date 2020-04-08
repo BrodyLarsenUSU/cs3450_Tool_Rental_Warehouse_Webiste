@@ -26,7 +26,7 @@
             <li><a href="/index">Home</a></li>
             <li><a href="/checkout">Checkout</a></li>
             <li><a href="/projects">Projects</a></li>
-            <li><a class="active" href="/employeePortal">Employee Portal</a></li>
+            <li><a href="/employeePortal">Employee Portal</a></li>
             <li><a href="/ledger">Ledger</a></li>
             <li style="float:right"><a href="/contactus">Contact Us</a></li>
         </ul>
@@ -49,14 +49,18 @@
         </tr>
     </table>
     <h3>Checked Out Tools</h3>
-    <table align="center">
+    <table align="center" id="myTable">
         <tr>
-            <th>Category</th>
-            <th>Name</th>
+            <th> Category </th>
+            <th> Name </th>
+            <th> Date Checked Out</th>
+            <th> Return By </th>
         </tr>
-        <tr class="toolCell" th:each="tool:${tools}">
-            <td class="toolCell" th:text="${{tool.category}}"></td>
-            <td class="toolCell" th:text="${{tool.name}}"></td>
+        <tr class="toolCell" th:each="item:${tools}" id="portalInfo">
+            <td class="toolCell" th:text="${{item.tool.category}}"></td>
+            <td class="toolCell" th:text="${{item.tool.name}}"></td>
+            <td class="toolCell" th:text="${{item.checkoutDate}}"></td>
+            <td class="toolCell" th:text="${{item.returnDate}}"></td>
         </tr>
     </table>
     

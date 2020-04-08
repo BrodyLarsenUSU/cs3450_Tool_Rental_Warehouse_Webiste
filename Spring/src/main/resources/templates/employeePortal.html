@@ -61,16 +61,20 @@
         <h3>Checked Out Tools</h3>
         <table align="center">
             <tr>
-                <th>Category</th>
-                <th>Name</th>
+                <th> Category </th>
+                <th> Name </th>
+                <th> Date Checked Out</th>
+                <th> Return By </th>
             </tr>
-            <tr class="toolCell" th:each="tool:${tools}">
-                <td class="toolCell" th:text="${{tool.category}}"></td>
-                <td class="toolCell" th:text="${{tool.name}}"></td>
+            <tr class="toolCell" th:each="item:${tools}">
+                <td class="toolCell" th:text="${{item.tool.category}}"></td>
+                <td class="toolCell" th:text="${{item.tool.name}}"></td>
+                <td class="toolCell" th:text="${{item.checkoutDate}}"></td>
+                <td class="toolCell" th:text="${{item.returnDate}}"></td>
                 <td class="toolCell">
                     <form th:action="@{/customer/removeCheckout}" th:object="${removeToolDto}" method="POST">
                         <input type="hidden" th:name="userId" th:value="${{customer.id}}">
-                        <input type="hidden" th:name="toolId" th:value="${{tool.id}}">
+                        <input type="hidden" th:name="toolId" th:value="${{item.tool.id}}">
                         <button type="submit" th.text="#{label.form.submit}">Remove/CheckIn</button>
                     </form>
                 </td>
