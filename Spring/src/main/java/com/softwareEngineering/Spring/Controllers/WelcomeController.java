@@ -126,18 +126,28 @@ public class WelcomeController extends Application {
         model.addAttribute("tools", toolRepo.findAll());
         if(temp != null){
             model.addAttribute("signedIn", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
             model.addAttribute("toolDto", new toolDto());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
         }
         return "tools";
     }
 
     @RequestMapping("/tools-success")
-    public String getToolsSuccess(Model model){
+    public String getToolsSuccess(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("tools", toolRepo.findAll());
         model.addAttribute("signedIn", true);
         model.addAttribute("toolDto", new toolDto());
         model.addAttribute("checkoutSuccess", true);
         model.addAttribute("alert_message", "Tool Reserved");
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        if(temp.isEmployee()){
+            model.addAttribute("employee", true);
+        }
         return "tools";
     }
 
@@ -146,6 +156,10 @@ public class WelcomeController extends Application {
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
         if(temp != null){
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
             model.addAttribute("signedIn", true);
             ArrayList<Tool> toolList = new ArrayList<>();;
             for(String s : temp.getReservedTools()){
@@ -162,6 +176,10 @@ public class WelcomeController extends Application {
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
         if(temp != null){
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
             model.addAttribute("signedIn", true);
             ArrayList<Tool> toolList = new ArrayList<>();;
             for(String s : temp.getReservedTools()){
@@ -174,7 +192,17 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/contactus")
-    public String getContactUs(Model model){
+    public String getContactUs(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            model.addAttribute("activeUser", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
+        }
         ContactUsDto contactDto = new ContactUsDto();
         model.addAttribute("contactForm", contactDto);
         return "contactUs";
@@ -219,7 +247,17 @@ public class WelcomeController extends Application {
     }
 
     @RequestMapping("/contact-form-success")
-    public String getContactFormSuccess(Model model){
+    public String getContactFormSuccess(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            model.addAttribute("activeUser", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
+        }
         model.addAttribute("formSuccess", true);
         model.addAttribute("successMessage", "Email Sent Successfully");
         ContactUsDto contactDto = new ContactUsDto();
@@ -230,10 +268,16 @@ public class WelcomeController extends Application {
     @RequestMapping("/signin")
     public String getSignIn(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
         loginDto loginDto = new loginDto();
         model.addAttribute("loginUser", loginDto);
-        if(session.getAttribute("activeUser") != null){
+        if(temp != null){
+            model.addAttribute("signedIn", true);
             model.addAttribute("activeUser", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
         }
         return "signIn";
     }
@@ -247,19 +291,40 @@ public class WelcomeController extends Application {
         model.addAttribute("loginUser", loginDto);
         if(session.getAttribute("activeUser") != null){
             model.addAttribute("activeUser", true);
+            model.addAttribute("signedIn", true);
         }
         return "signIn";
     }
 
     @RequestMapping("/projects")
-    public String getProjects(){
+    public String getProjects(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            model.addAttribute("activeUser", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
+        }
         return "projects";
     }
 
     @RequestMapping("/signup")
-    public String getSignUP(Model model){
+    public String getSignUP(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
         customerDto custDto = new customerDto();
-		model.addAttribute("customer", custDto);
+        model.addAttribute("customer", custDto);
+        if(temp != null){
+            model.addAttribute("signedIn", true);
+            model.addAttribute("activeUser", true);
+            model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+            if(temp.isEmployee()){
+                model.addAttribute("employee", true);
+            }
+        }
         return "signUp";
     }
 
@@ -267,6 +332,7 @@ public class WelcomeController extends Application {
     public String getEPortal(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("lookupDto", null);
+        model.addAttribute("signedIn", true);
         Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("lookupDto", new lookupDto());
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
@@ -278,6 +344,7 @@ public class WelcomeController extends Application {
     public String getEPortalError(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("lookupDto", null);
+        model.addAttribute("signedIn", true);
         Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("lookupDto", new lookupDto());
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
@@ -297,6 +364,7 @@ public class WelcomeController extends Application {
             Tool tempTool = toolRepo.findToolById(t);
             sendTools.add(tempTool);
         }
+        model.addAttribute("signedIn", true);
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
         model.addAttribute("customer", look);
         model.addAttribute("lookupDto", new lookupDto());
@@ -313,6 +381,8 @@ public class WelcomeController extends Application {
         if(temp == null || !temp.isEmployee()){
             return "redirect:/signin";
         }
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        model.addAttribute("signedIn", true);
         model.addAttribute("ledger", ledgeRepo.findAll());
         model.addAttribute("ledgerDto", new ledgerDto());
         model.addAttribute("ledgerItem", new ledgerItemDto());

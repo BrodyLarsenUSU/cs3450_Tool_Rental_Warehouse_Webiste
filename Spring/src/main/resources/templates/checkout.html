@@ -6,6 +6,11 @@
         <title>Tool WareHouse Checkout</title>
     </head>
     <body>
+
+    <h4 class="hidden" th:if="${signedIn}" align="left" style="float: left;" color=#d9d9d9 th:text="${'Welcome ' + name}"></h4>
+    <h4  th:if="${signedIn}" align="right" style="float: right;" th:text="${'Welcome ' + name}"></h4>
+
+
     <div class="header">
         <h1> CHECKOUT PAGE </h1>
         <img src="TheWarehouseLogo-FINAL2.png" alt="logo" style="width:300px;height:100px">    
@@ -19,6 +24,8 @@
             <li><a href="/index">Home</a></li>
             <li><a class="active" href="/checkout">Checkout</a></li>
             <li><a href="/projects">Projects</a></li>
+            <li th:if="${employee}"><a href="/employeePortal">Employee Portal</a></li>
+            <li th:if="${employee}"><a href="/ledger">Ledger</a></li>
             <li style="float:right"><a href="/contactus">Contact Us</a></li>
         </ul>
     </header>
