@@ -332,16 +332,23 @@
                         tableRow.appendChild(td7);
 
                         var postButton = document.createElement("button");
-                        postButton.innerText = " Checkout ";
-                        postButton.setAttribute("type", "submit");
-                        postButton.onclick = function(){
-                            $.ajax({
-                                type: "POST",
-                                url: "/customer/reserveTool",
-                                data: { id: tool.id }
-                            });
-                            postSuccess();
-                        };
+                        if(tool.onHand <= 0){
+                            postButton.innerText = " Out Of Stock ";
+                            postButton.className = "disabledButton";
+                            postButton.disabled = true;
+                        }
+                        else{
+                            postButton.innerText = " Checkout ";
+                            postButton.setAttribute("type", "submit");
+                            postButton.onclick = function(){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/customer/reserveTool",
+                                    data: { id: tool.id }
+                                });
+                                postSuccess();
+                            };
+                        }
                         td7.appendChild(postButton);
                     }
                 }
