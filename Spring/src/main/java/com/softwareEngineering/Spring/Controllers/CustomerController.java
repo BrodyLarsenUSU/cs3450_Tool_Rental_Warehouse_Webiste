@@ -61,7 +61,6 @@ public class CustomerController extends Application {
 			return "redirect:/index-add-success";
 		}
 		else{
-			// session.setAttribute("activeUser", registered);
 			return "redirect:/index-add-fail";
 		}
 	}
