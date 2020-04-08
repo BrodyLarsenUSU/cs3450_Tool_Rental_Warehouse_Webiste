@@ -18,6 +18,7 @@ public class Customer{
 		private String username;
 		private ArrayList<String> checkedOutTools;
 		private ArrayList<String> reservedTools;
+		private ArrayList<ToolContainer> containedCheckoutTools;
 
 		public Customer(){
 			//firstName = "";
@@ -28,6 +29,7 @@ public class Customer{
 			//gender = "";
 			checkedOutTools = new ArrayList<>();
 			reservedTools = new ArrayList<>();
+			containedCheckoutTools = new ArrayList<>();
 		}
 
 		public Customer(String fn, String ln, int ag, boolean ac, boolean e, String g, String p, String u){
@@ -52,6 +54,17 @@ public class Customer{
 			reservedTools.removeAll(ids);
 		}
 
+
+		public void addToolsToCheckedOut(ArrayList<String> ids, ArrayList<Tool> tools){
+			ArrayList<ToolContainer> temp = new ArrayList<>();
+			for(Tool id : tools){
+				temp.add(new ToolContainer(id));
+			}
+			checkedOutTools.addAll(ids);
+			containedCheckoutTools.addAll(temp);
+			reservedTools.removeAll(ids);
+		}
+
 		public void removeReservation(String id) {
 			reservedTools.remove(id);
 			System.out.println("Removing " + id + " from Reserve");
@@ -59,6 +72,14 @@ public class Customer{
 
 		public void removeToolCheckout(String id){
 			checkedOutTools.remove(id);
+			for(ToolContainer i : containedCheckoutTools){
+				if(i.getToolId().compareTo(id) == 0){
+					containedCheckoutTools.remove(i);
+					if(containedCheckoutTools.size() == 0){
+						return;
+					}
+				}
+			}
 		}
 
 
@@ -66,6 +87,14 @@ public class Customer{
 
 
 		//Getters and Setters
+
+		public ArrayList<ToolContainer> getContainedCheckoutTools() {
+			return this.containedCheckoutTools;
+		}
+
+		public void setContainedCheckoutTools(ArrayList<ToolContainer> containedCheckoutTools) {
+			this.containedCheckoutTools = containedCheckoutTools;
+		}
 
 		public ArrayList<String> getCheckedOutTools() {
 			return this.checkedOutTools;

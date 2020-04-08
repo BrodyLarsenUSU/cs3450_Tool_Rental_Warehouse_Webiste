@@ -358,18 +358,13 @@ public class WelcomeController extends Application {
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
         Customer look = (Customer)session.getAttribute("lookupDto");
-        ArrayList<String> userTools = look.getCheckedOutTools();
-        ArrayList<Tool> sendTools = new ArrayList<>();
-        for(String t : userTools){
-            Tool tempTool = toolRepo.findToolById(t);
-            sendTools.add(tempTool);
-        }
         model.addAttribute("signedIn", true);
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
         model.addAttribute("customer", look);
         model.addAttribute("lookupDto", new lookupDto());
         model.addAttribute("found", true);
-        model.addAttribute("tools", sendTools);
+        ArrayList<ToolContainer> userTools = look.getContainedCheckoutTools();
+        model.addAttribute("tools", userTools);
         model.addAttribute("removeToolDto", new removeToolDto());
         return "employeePortal";
     }
@@ -396,13 +391,8 @@ public class WelcomeController extends Application {
         model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
         model.addAttribute("signedIn", true);
         model.addAttribute("customer", temp);
-        ArrayList<String> userTools = temp.getCheckedOutTools();
-        ArrayList<Tool> sendTools = new ArrayList<>();
-        for(String t : userTools){
-            Tool tempTool = toolRepo.findToolById(t);
-            sendTools.add(tempTool);
-        }
-        model.addAttribute("tools", sendTools);
+        ArrayList<ToolContainer> userTools = temp.getContainedCheckoutTools();
+        model.addAttribute("tools", userTools);
         return "userPortal";
     }
 }
