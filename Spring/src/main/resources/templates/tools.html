@@ -13,7 +13,7 @@
             </div>
 
             <h4 class="hidden" th:if="${signedIn}" align="left" style="float: left;" color=#d9d9d9 th:text="${'Welcome ' + name}"></h4>
-            <h4  th:if="${signedIn}" align="right" style="float: right;" th:text="${'Welcome ' + name}"></h4>
+            <h4  th:if="${signedIn}" align="right" style="float: right;"><a th:text="${'Welcome ' + name}" href="/userPortal"></a></h4>
 
             <div class="header">
                 <h1>TOOLS PAGE</h1>

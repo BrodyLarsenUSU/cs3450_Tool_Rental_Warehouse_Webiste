@@ -388,4 +388,21 @@ public class WelcomeController extends Application {
         model.addAttribute("ledgerItem", new ledgerItemDto());
         return "ledger";
     }
+
+    @RequestMapping("userPortal")
+    public String getUserPortal(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Customer temp = (Customer)session.getAttribute("activeUser");
+        model.addAttribute("name", temp.getFirstName() + " " + temp.getLastName());
+        model.addAttribute("signedIn", true);
+        model.addAttribute("customer", temp);
+        ArrayList<String> userTools = temp.getCheckedOutTools();
+        ArrayList<Tool> sendTools = new ArrayList<>();
+        for(String t : userTools){
+            Tool tempTool = toolRepo.findToolById(t);
+            sendTools.add(tempTool);
+        }
+        model.addAttribute("tools", sendTools);
+        return "userPortal";
+    }
 }
