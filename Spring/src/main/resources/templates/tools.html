@@ -22,6 +22,8 @@
                     <li><a href="/index">Home</a></li>
                     <li><a href="/checkout">Checkout</a></li>
                     <li><a href="/projects">Projects</a></li>
+                    <li th:if="${employee}"><a href="/employeePortal">Employee Portal</a></li>
+                    <li th:if="${employee}"><a href="/ledger">Ledger</a></li>
                     <li style="float:right"><a href="/contactus">Contact Us</a></li>
                 </ul>
             </header>
