@@ -66,8 +66,7 @@
                 </div>
 
                 <div>
-                    <select id="pagenumber">
-                    </select>
+                    <input type = "number" id="pagenumber" min="0">
                     <button type="button" id="pageGo">Go</button>
                     <button type="button" id="prevGo">Prev</button>
                     <button type="button" id="nextGo">Next</button>
@@ -76,6 +75,11 @@
                 <div>
                     <button type="button" id="resetButton"> Reset Display </button>
                 </div>
+
+            </div>
+                <div id="PageCounts"></div>
+                <div id="CurrentPage"></div>
+            <div>
 
             </div>
             <br/>
@@ -133,7 +137,13 @@
                 pageNext.setAttribute("type", "submit");
 
 
+                var pageCountDisplay = document.getElementById("PageCounts");
+                var currentPageDisplay = document.getElementById("CurrentPage");
+
                 initialize();
+
+
+
 
 
                 //<!-called by other functions to display the list on the page--->
@@ -173,17 +183,11 @@
                         alert("given list should have completely emptied")
                         console.log(listGiven)
                     }
-
-                    fixPageChoices();
                     changePage(0);
+                    pageCountDisplay.innerHTML = "Pages 0-" + (pageList.length-1);
                 }
 
-
-                //<!--wipes the options from the page number selection, and puts in new ones based on the pageList-->
-                function fixPageChoices(){
-
-                }
-
+                //<!--Changes the page to the specified page, if it is valid-->
                 function changePage(pageNumber){
                     if(pageNumber>=0 && pageNumber<pageList.length){
                         wipe();
@@ -192,11 +196,16 @@
                         for(i in curList){
                             addTool(curList[i]);
                         }
+                        currentPageDisplay.innerHTML = "Current Page is " + curPageListIndex;
                     }
                 }
+
+                //<!--trys to go to the next page-->
                 function nextPage(){
                     changePage(curPageListIndex+1);
                 }
+
+                //<!--trys to go to the previous page-->
                 function prevPage(){
                     changePage(curPageListIndex-1);
                 }
