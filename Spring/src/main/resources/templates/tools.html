@@ -39,6 +39,7 @@
                     <input type="text" id="searchBar">
                     <button type="button" id="searchGo"> Search</button>
                 </div>
+
                 <div>
                     <select id="filterBy">
                         <option value="InStock">In Stock</option>
@@ -55,15 +56,27 @@
                     </select>
                     <button type="button" id="filterGo">Filter</button>
                 </div>
+
+                <div>
                     <select id="sortBy">
                         <option value="alpha"> Alphabetically </option>
                         <option value="quantity"> Quantity on Hand </option>
                     </select>
                     <button type="button" id="sortGo">Sort</button>
                 </div>
+
+                <div>
+                    <select id="pagenumber">
+                    </select>
+                    <button type="button" id="pageGo">Go</button>
+                    <button type="button" id="prevGo">Prev</button>
+                    <button type="button" id="nextGo">Next</button>
+                </div>
+
                 <div>
                     <button type="button" id="resetButton"> Reset Display </button>
                 </div>
+
             </div>
             <br/>
             <table align="center" id="toolTable">
@@ -72,11 +85,15 @@
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script th:inline="javascript">
 
+                var list = /*[[${tools}]]*/ "Test";
+                var pageList = [];
+                var pageSize = 10;
+                var curPageListIndex = 0;
+
+
                 // <!--This pulls the needed data to set onclick methods for the buttons to allow sorting filtering and searching-->
 
-                var list = /*[[${tools}]]*/ "Test";
                 var table = document.getElementById("toolTable");
-
 
                 var resetButton = document.getElementById("resetButton");
                 resetButton.setAttribute("onclick", "initialize()");
@@ -84,37 +101,112 @@
 
 
                 var searchFor = document.getElementById("searchBar");
-
                 var searchButton = document.getElementById("searchGo");
                 searchButton.setAttribute("onclick", "search(searchFor.value)");
                 searchButton.setAttribute("type", "submit");
 
 
                 var filterBy = document.getElementById("filterBy");
-
                 var filterButton = document.getElementById("filterGo");
                 filterButton.setAttribute("onclick", "filterCategory(filterBy.value)");
                 filterButton.setAttribute("type", "submit");
 
 
                 var sortBy = document.getElementById("sortBy");
-
                 var sortButton = document.getElementById("sortGo");
                 sortButton.setAttribute("onclick", "sortWrapper(sortBy.value)");
                 sortButton.setAttribute("type", "submit");
 
 
+                var pageWanted = document.getElementById("pagenumber");
+
+                var pageButton = document.getElementById("pageGo")
+                pageButton.setAttribute("onclick", "changePage(pageWanted.value)");
+                pageButton.setAttribute("type", "submit");
+
+                var pagePrev = document.getElementById("prevGo")
+                pagePrev.setAttribute("onclick", "prevPage()");
+                pagePrev.setAttribute("type", "submit");
+
+                var pageNext = document.getElementById("nextGo")
+                pageNext.setAttribute("onclick", "nextPage()");
+                pageNext.setAttribute("type", "submit");
+
 
                 initialize();
+
+
+                //<!-called by other functions to display the list on the page--->
+                function makeAndDisplayPageList(listGiven){
+                    wipe();
+                    //<!--clears the global page list-->
+                    pageList=[];
+
+                    //<!--reverses the list so popping works right-->
+                    listGiven = listGiven.reverse();
+
+                    //<!--sets the page count to the int of listGiven.length/pageSize-->
+                    var pageCount = parseInt(listGiven.length/pageSize);
+                    //<!--there could be some left over, so we may need an extra page-->
+                    if(listGiven.length$pageSize != 0){
+                        pageCount += 1
+                    }
+
+                    //<!--sets up the page list array-->
+                    for(var i = 0; i<pageCount; i++){
+                        var nextList=[];
+                        for(var j = 0; j<pageSize; j++){
+                            //<!--if popping can still be done-->
+                            if(listGiven.length!=0){
+                                nextList.push(listGiven.pop());
+                            }
+                        }
+                        //<!--ensuring that next list isnt pushed if empty-->
+                        //<!--shouldnt be empty if I did the math right, but just in case-->
+                        if(nextList.length!=0){
+                            pageList.push(nextList);
+                        }
+                    }
+
+                    //<!--ensures all contents of the given length made it into the pageList-->
+                    if(listGiven.length!=0){
+                        alert("given list should have completely emptied")
+                        console.log(listGiven)
+                    }
+
+                    fixPageChoices();
+                    changePage(0);
+                }
+
+
+                //<!--wipes the options from the page number selection, and puts in new ones based on the pageList-->
+                function fixPageChoices(){
+
+                }
+
+                function changePage(pageNumber){
+                    if(pageNumber>=0 && pageNumber<pageList.length){
+                        wipe();
+                        curPageListIndex=pageNumber;
+                        var curList = pageList[pageNumber];
+                        for(i in curList){
+                            addTool(curList[i]);
+                        }
+                    }
+                }
+                function nextPage(){
+                    changePage(curPageListIndex+1);
+                }
+                function prevPage(){
+                    changePage(curPageListIndex-1);
+                }
 
                 // <!--displays the normal unfiltered, unsorted list-->
                 function initialize(){
                     // <!--wipes the screen-->
                     wipe();
                     // <!--displays the normal display-->
-                    for(var i in list){
-                        addTool(list[i]);
-                    }
+                    makeAndDisplayPageList(list.slice());
                 }
 
                 // <!--a wrapper for the sort method-->
@@ -169,9 +261,7 @@
                     }
                     // <!--wipes, and pushes the sorted list to the screen-->
                     wipe();
-                    for(var k in sortedList){
-                        addTool(sortedList[k]);
-                    }
+                    makeAndDisplayPageList(sortedList);
                 }
 
                 // <!--filters and displays only tool of category "categtory"-->
@@ -196,9 +286,7 @@
                         else{
                             // <!--if there are tools in the temp list, clears the screen then displays only the temp list-->
                             wipe();
-                            for(var i in filteredList){
-                                addTool(filteredList[i]);
-                            }
+                            makeAndDisplayPageList(filteredList);
                         }
                     }
                 }
@@ -222,9 +310,7 @@
                     else{
                         // <!--if there are tools in the temp list, clears the screen then displays only the temp list-->
                         wipe();
-                        for(var i in filteredList){
-                            addTool(filteredList[i]);
-                        }
+                        makeAndDisplayPageList(filteredList);
                     }
                 }
 
@@ -246,9 +332,7 @@
                     else{
                         // <!--if there are tools in the temp list, clears the screen then displays only the temp list-->
                         wipe();
-                        for(var i in searchedList){
-                            addTool(searchedList[i]);
-                        }
+                        makeAndDisplayPageList(searchedList);
                     }
                 }
 
