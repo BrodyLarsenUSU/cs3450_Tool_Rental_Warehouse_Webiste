@@ -54,11 +54,13 @@ public class WelcomeController extends Application {
     @Autowired
     private LedgerRepository ledgeRepo;
 
+    //navigate to home page
 	@RequestMapping("/")
     public String getStarterIndex(){
         return "index";
     }
 
+    //navigate to home page
     @RequestMapping("/index")
     public String getIndex(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -73,6 +75,7 @@ public class WelcomeController extends Application {
         return "index";
     }
 
+    //create new account and sign them in.
     @RequestMapping("/index-add-success")
     public String getIndexAddSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -87,6 +90,7 @@ public class WelcomeController extends Application {
         return "index";
     }
 
+    //report failure to sign in. 
     @RequestMapping("/index-add-fail")
     public String getIndexAddFail(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -96,7 +100,7 @@ public class WelcomeController extends Application {
         return "index";
     }
     
-
+    //successfully sign in user. 
     @RequestMapping("/index-login-success")
     public String getIndexLoginSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -111,6 +115,7 @@ public class WelcomeController extends Application {
         return "index";
     }
 
+    // logout the user. 
     @RequestMapping("/index-logout-success")
     public String getIndexLogoutSuccess(Model model){
         model.addAttribute("addedSuccess", true);
@@ -119,6 +124,7 @@ public class WelcomeController extends Application {
         return "index";
     }
 
+    // navigate to tools page
     @RequestMapping("/tools")
     public String getTools(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -135,6 +141,7 @@ public class WelcomeController extends Application {
         return "tools";
     }
 
+    //add reserved tools to user.
     @RequestMapping("/tools-success")
     public String getToolsSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -151,6 +158,7 @@ public class WelcomeController extends Application {
         return "tools";
     }
 
+    //checkout tools.
     @RequestMapping("/checkout")
     public String getCheckout(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -171,6 +179,7 @@ public class WelcomeController extends Application {
         return "checkout";
     }
 
+    //successfully added tools to user account. 
     @RequestMapping("/checkout-success")
     public String getCheckoutSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -191,6 +200,7 @@ public class WelcomeController extends Application {
         return "checkout";
     }
 
+    //navigate to contact us page. 
     @RequestMapping("/contactus")
     public String getContactUs(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -208,6 +218,7 @@ public class WelcomeController extends Application {
         return "contactUs";
     }
 
+    //submit contact form and send email. 
     @PostMapping("/contact-form")
     public String getContactForm(@ModelAttribute("contactForm") ContactUsDto contactUsDto, Model model){
         System.out.println("Into Form");
@@ -246,6 +257,7 @@ public class WelcomeController extends Application {
         return "redirect:/contact-form-success";
     }
 
+    //successfully sent email. 
     @RequestMapping("/contact-form-success")
     public String getContactFormSuccess(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -265,6 +277,7 @@ public class WelcomeController extends Application {
         return "contactUs";
     }
 
+    //sign in page
     @RequestMapping("/signin")
     public String getSignIn(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -282,6 +295,7 @@ public class WelcomeController extends Application {
         return "signIn";
     }
 
+    //error signing in
     @RequestMapping("/signin-error")
     public String getSignInError(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -296,6 +310,7 @@ public class WelcomeController extends Application {
         return "signIn";
     }
 
+    //projects page. 
     @RequestMapping("/projects")
     public String getProjects(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -311,6 +326,7 @@ public class WelcomeController extends Application {
         return "projects";
     }
 
+    //sign up page, add user to database. 
     @RequestMapping("/signup")
     public String getSignUP(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -328,6 +344,7 @@ public class WelcomeController extends Application {
         return "signUp";
     }
 
+    //employee portal shows up if the user is an employee.
     @RequestMapping("/employeePortal")
     public String getEPortal(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -340,6 +357,7 @@ public class WelcomeController extends Application {
         return "employeePortal";
     }
 
+    //search for a nonexistant user. 
     @RequestMapping("/employeePortal-search-error")
     public String getEPortalError(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -353,6 +371,7 @@ public class WelcomeController extends Application {
         return "employeePortal";
     }
 
+    //search for a customer. 
     @RequestMapping("/employeePortal-customer-search")
     public String getCustSearch(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -369,6 +388,7 @@ public class WelcomeController extends Application {
         return "employeePortal";
     }
 
+    //navigate to ledger. 
     @RequestMapping("/ledger")
     public String getLedger(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -384,6 +404,7 @@ public class WelcomeController extends Application {
         return "ledger";
     }
 
+    //navigate to user portal. Shows up once signed in.
     @RequestMapping("userPortal")
     public String getUserPortal(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();

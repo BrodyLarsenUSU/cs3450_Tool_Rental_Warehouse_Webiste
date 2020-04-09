@@ -2,13 +2,10 @@ package com.softwareEngineering.Spring.Controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
-
 import com.softwareEngineering.Spring.Application;
 import com.softwareEngineering.Spring.Models.*;
 import com.softwareEngineering.Spring.Models.DTOs.checkoutDto;
@@ -40,11 +37,13 @@ public class CustomerController extends Application {
 	@Autowired
 	private LedgerRepository ledgeRepo;
 
+	// map the website to the home page
 	@GetMapping("/customer")
 	public String getDB(Model model) {
 		return "index";
 	}
 
+	// Creates a new account and saves it to the database. 
 	@PostMapping("/customer")
 	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto, HttpServletRequest request, Model model){
 		Customer registered = new Customer();
@@ -65,6 +64,7 @@ public class CustomerController extends Application {
 		}
 	}
 
+	//allows the user to sign in, throws error if no account exists. 
 	@PostMapping("/customer/signin")
 	public String loginCustomer(@ModelAttribute("loginUser") loginDto loginDto, HttpServletRequest request, Model model){
 		HttpSession session = request.getSession();
@@ -78,6 +78,7 @@ public class CustomerController extends Application {
 		return "redirect:/signin-error";
 	}
 
+	// sign the user out, set active to null. 
 	@RequestMapping("/customer/signout")
 	public String signoutCustomer(HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -85,6 +86,7 @@ public class CustomerController extends Application {
 		return "redirect:/index-logout-success";
 	}
 
+	//allow the user to reserve a tool for checkout.
 	@PostMapping("/customer/reserveTool")
 	public String reserveTool(@RequestParam("id") String id, Model model, HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -95,6 +97,7 @@ public class CustomerController extends Application {
 		return "redirect:/tools-success";
 	}
 
+	// remove the reservation. 
 	@PostMapping("/customer/removeReservation")
 	public String removeReservation(@ModelAttribute("toolDto") toolDto toolDto, Model model, HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -105,6 +108,7 @@ public class CustomerController extends Application {
 		return "redirect:/checkout";
 	}
 
+	//checkout tools. assign them to the user. 
 	@PostMapping("/customer/checkoutTools")
 	public String checkoutTools(Model model, HttpServletRequest request) {
 		HttpSession session =  request.getSession();
@@ -125,6 +129,7 @@ public class CustomerController extends Application {
 		return "redirect:/checkout-success";
 	}
 
+	//allow employees to look up the customers. 
 	@PostMapping("/customer/lookup")
 	public String lookupCustomer(@ModelAttribute("lookupDto") lookupDto lookupDto, Model model, HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -136,6 +141,7 @@ public class CustomerController extends Application {
 		return "redirect:/employeePortal-customer-search";
 	}
 
+	//return the tools the user had checked out. 
 	@PostMapping("/customer/removeCheckout")
 	public String removeCheckout(@ModelAttribute("removeToolDto") removeToolDto removeToolDto, Model model, HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -150,6 +156,7 @@ public class CustomerController extends Application {
 		return "redirect:/employeePortal-customer-search";
 	}
 
+	//create an employee account. 
 	@PostMapping("/customer/makeEmployee")
 	public void makeEmployee(@RequestParam("id") String id, Model model, HttpServletRequest request){
 		Customer cust = customerRepository.findCustomerById(id);
