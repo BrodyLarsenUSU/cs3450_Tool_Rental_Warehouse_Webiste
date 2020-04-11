@@ -414,6 +414,9 @@ public class WelcomeController extends Application {
         model.addAttribute("customer", temp);
         ArrayList<ToolContainer> userTools = temp.getContainedCheckoutTools();
         model.addAttribute("tools", userTools);
+        if(temp.isEmployee()){
+            model.addAttribute("employee", true);
+        }
         return "userPortal";
     }
 }
