@@ -48,7 +48,8 @@ public class CustomerController extends Application {
 	public String saveCustomer(@ModelAttribute("customer") @Valid customerDto customerDto, HttpServletRequest request, Model model){
 		Customer registered = new Customer();
 		HttpSession session = request.getSession();
-		if(customerDto.getAge() >= 18){
+		Customer test = customerRepository.findCustomerByUsername(customerDto.getUsername());
+		if(customerDto.getAge() >= 18 && test == null){
 			registered.setFirstName(customerDto.getFirstName());
 			registered.setLastName(customerDto.getLastName());
 			registered.setAge(customerDto.getAge());
@@ -60,6 +61,12 @@ public class CustomerController extends Application {
 			return "redirect:/index-add-success";
 		}
 		else{
+			if(test != null){
+				session.setAttribute("message", "Username is taken");
+			}
+			else{
+				session.setAttribute("message", "Failed to create account: Users must be 18 or older.");
+			}
 			return "redirect:/index-add-fail";
 		}
 	}

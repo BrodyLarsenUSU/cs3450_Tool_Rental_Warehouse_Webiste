@@ -96,7 +96,7 @@ public class WelcomeController extends Application {
         HttpSession session = request.getSession();
         Customer temp = (Customer)session.getAttribute("activeUser");
         model.addAttribute("addedFailed", true);
-        model.addAttribute("alert_message", "Failed to create account: Users must be 18 or older.");
+        model.addAttribute("alert_message", session.getAttribute("message"));
         return "index";
     }
     
