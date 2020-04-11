@@ -10,7 +10,7 @@ public class customerDto{
 
 	private String gender;
 
-	private int age;
+	private Integer age;
 
 	private String password;
 
@@ -56,7 +56,7 @@ public class customerDto{
 		this.gender = gender;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return this.age;
 	}
 
