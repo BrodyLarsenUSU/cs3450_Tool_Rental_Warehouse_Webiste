@@ -31,27 +31,12 @@
     <p>Create an Account Here.</p>
     <div class="container">
         <form action = "/customer" th:action="@{/customer}" th:object="${customer}" method="POST">
-
-
-
-            <label for="firstName">First Name:</label>
-            <input id="firstName" type="text" th:field="*{firstName}" required/> <br/>
-
-            <label for="lastName">Last Name:</label>
-            <input id="lastName" type="text" th:field="*{lastName}" required/> <br/>
-
-            <label for="age">Age:</label>
-            <input id="age" type="text" th:field="*{age}" required/><br/>
-
-            <label for="gender">Gender:</label>
-            <input id="gender" type="text" th:field="*{gender}" required/> <br/>
-
-            <label for="userName">Username:</label>
-            <input id="userName" type="text" th:field="*{username}" required/> <br/>
-
-            <label for="password">Password:</label>
-            <input id="password" type="password" th:field="*{password}" required/> <br/>
-
+            <input type="text" th:field="*{firstName}" placeholder="First Name" required/> <br/>
+            <input type="text" th:field="*{lastName}" placeholder="Last Name" required/> <br/> 
+            <input type="text" th:field="*{age}" placeholder="Age" required/> <br/>
+            <input type="text" th:field="*{gender}" placeholder="Gender" required/> <br/>
+            <input type="text" th:field="*{username}" placeholder="Username" required/> <br/>
+            <input type="password" th:field="*{password}" placeholder="Password" required/> <br/>
             <button type="submit" th.text="#{label.form.submit}">Submit</button> <input type="reset" value="Reset" /> <br />
         </form>
     </div>       
