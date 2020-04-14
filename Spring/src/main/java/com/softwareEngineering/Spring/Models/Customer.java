@@ -78,6 +78,7 @@ public class Customer{
 					if(containedCheckoutTools.size() == 0){
 						return;
 					}
+					return;
 				}
 			}
 		}
