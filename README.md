@@ -7,5 +7,5 @@ Steps to view webiste:
 2. In a command line interface navigate to the spring folder. [C:\...\cs3450_Tool_Rental_Warehouse_Website\spring]
 3. While in the spring folder tpye "./mvnw spring-boot:run" to start spring. (The spring framework will download if spring isnt on
 on the computer) Spring will host the website.
-4.open a web browser and enter "localhost:8080" to access the website
+4. open a web browser and enter "localhost:8080" to access the website
 
